@@ -10,6 +10,17 @@
 		507E4A751DCA138B00B95FD1 /* Formulitic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */; };
 		507E4A7A1DCA138B00B95FD1 /* FormuliticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A791DCA138B00B95FD1 /* FormuliticTests.swift */; };
 		507E4A7C1DCA138B00B95FD1 /* Formulitic.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E4A6E1DCA138A00B95FD1 /* Formulitic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		507E4A871DCA1E3500B95FD1 /* Formulitic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A861DCA1E3500B95FD1 /* Formulitic.swift */; };
+		507E4A8B1DCA1EC400B95FD1 /* FormuliticDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A8A1DCA1EC400B95FD1 /* FormuliticDelegate.swift */; };
+		507E4A8D1DCA1F4E00B95FD1 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A8C1DCA1F4E00B95FD1 /* Expression.swift */; };
+		507E4A8F1DCA20E500B95FD1 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A8E1DCA20E500B95FD1 /* Value.swift */; };
+		507E4A911DCA291000B95FD1 /* ErrorValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A901DCA291000B95FD1 /* ErrorValue.swift */; };
+		507E4A931DCA2B2200B95FD1 /* EmptyValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A921DCA2B2200B95FD1 /* EmptyValue.swift */; };
+		507E4A961DCA2C0700B95FD1 /* EvaluateContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A951DCA2C0700B95FD1 /* EvaluateContext.swift */; };
+		507E4A981DCA36F600B95FD1 /* DoubleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A971DCA36F600B95FD1 /* DoubleValue.swift */; };
+		507E4A9A1DCA373400B95FD1 /* BoolValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A991DCA373400B95FD1 /* BoolValue.swift */; };
+		507E4A9C1DCA37A900B95FD1 /* StringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A9B1DCA37A900B95FD1 /* StringValue.swift */; };
+		507E4A9E1DCA37EC00B95FD1 /* ReferenceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A9D1DCA37EC00B95FD1 /* ReferenceValue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +40,17 @@
 		507E4A741DCA138B00B95FD1 /* FormuliticTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormuliticTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		507E4A791DCA138B00B95FD1 /* FormuliticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormuliticTests.swift; sourceTree = "<group>"; };
 		507E4A7B1DCA138B00B95FD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		507E4A861DCA1E3500B95FD1 /* Formulitic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formulitic.swift; sourceTree = "<group>"; };
+		507E4A8A1DCA1EC400B95FD1 /* FormuliticDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormuliticDelegate.swift; sourceTree = "<group>"; };
+		507E4A8C1DCA1F4E00B95FD1 /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		507E4A8E1DCA20E500B95FD1 /* Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
+		507E4A901DCA291000B95FD1 /* ErrorValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorValue.swift; sourceTree = "<group>"; };
+		507E4A921DCA2B2200B95FD1 /* EmptyValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyValue.swift; sourceTree = "<group>"; };
+		507E4A951DCA2C0700B95FD1 /* EvaluateContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluateContext.swift; sourceTree = "<group>"; };
+		507E4A971DCA36F600B95FD1 /* DoubleValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleValue.swift; sourceTree = "<group>"; };
+		507E4A991DCA373400B95FD1 /* BoolValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolValue.swift; sourceTree = "<group>"; };
+		507E4A9B1DCA37A900B95FD1 /* StringValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValue.swift; sourceTree = "<group>"; };
+		507E4A9D1DCA37EC00B95FD1 /* ReferenceValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceValue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,8 +112,43 @@
 		507E4A851DCA14C400B95FD1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				507E4A861DCA1E3500B95FD1 /* Formulitic.swift */,
+				507E4A8A1DCA1EC400B95FD1 /* FormuliticDelegate.swift */,
+				507E4A881DCA1E9F00B95FD1 /* Expression */,
+				507E4A941DCA2BE900B95FD1 /* Evaluation */,
+				507E4A891DCA1E9F00B95FD1 /* Value */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		507E4A881DCA1E9F00B95FD1 /* Expression */ = {
+			isa = PBXGroup;
+			children = (
+				507E4A8C1DCA1F4E00B95FD1 /* Expression.swift */,
+			);
+			path = Expression;
+			sourceTree = "<group>";
+		};
+		507E4A891DCA1E9F00B95FD1 /* Value */ = {
+			isa = PBXGroup;
+			children = (
+				507E4A991DCA373400B95FD1 /* BoolValue.swift */,
+				507E4A971DCA36F600B95FD1 /* DoubleValue.swift */,
+				507E4A921DCA2B2200B95FD1 /* EmptyValue.swift */,
+				507E4A901DCA291000B95FD1 /* ErrorValue.swift */,
+				507E4A9D1DCA37EC00B95FD1 /* ReferenceValue.swift */,
+				507E4A9B1DCA37A900B95FD1 /* StringValue.swift */,
+				507E4A8E1DCA20E500B95FD1 /* Value.swift */,
+			);
+			path = Value;
+			sourceTree = "<group>";
+		};
+		507E4A941DCA2BE900B95FD1 /* Evaluation */ = {
+			isa = PBXGroup;
+			children = (
+				507E4A951DCA2C0700B95FD1 /* EvaluateContext.swift */,
+			);
+			path = Evaluation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +213,7 @@
 				TargetAttributes = {
 					507E4A6A1DCA138A00B95FD1 = {
 						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Manual;
 					};
 					507E4A731DCA138B00B95FD1 = {
@@ -204,6 +262,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507E4A8B1DCA1EC400B95FD1 /* FormuliticDelegate.swift in Sources */,
+				507E4A871DCA1E3500B95FD1 /* Formulitic.swift in Sources */,
+				507E4A9E1DCA37EC00B95FD1 /* ReferenceValue.swift in Sources */,
+				507E4A961DCA2C0700B95FD1 /* EvaluateContext.swift in Sources */,
+				507E4A9A1DCA373400B95FD1 /* BoolValue.swift in Sources */,
+				507E4A9C1DCA37A900B95FD1 /* StringValue.swift in Sources */,
+				507E4A8D1DCA1F4E00B95FD1 /* Expression.swift in Sources */,
+				507E4A981DCA36F600B95FD1 /* DoubleValue.swift in Sources */,
+				507E4A931DCA2B2200B95FD1 /* EmptyValue.swift in Sources */,
+				507E4A911DCA291000B95FD1 /* ErrorValue.swift in Sources */,
+				507E4A8F1DCA20E500B95FD1 /* Value.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +397,7 @@
 		507E4A801DCA138B00B95FD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -340,6 +410,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.Formulitic;
 				PRODUCT_NAME = Formulitic;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -347,6 +418,7 @@
 		507E4A811DCA138B00B95FD1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
@@ -366,6 +438,7 @@
 		507E4A831DCA138B00B95FD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = FormuliticTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.FormuliticTests;
@@ -377,6 +450,7 @@
 		507E4A841DCA138B00B95FD1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = FormuliticTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hironytic.FormuliticTests;
@@ -404,6 +478,7 @@
 				507E4A811DCA138B00B95FD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		507E4A821DCA138B00B95FD1 /* Build configuration list for PBXNativeTarget "FormuliticTests_iOS" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +487,7 @@
 				507E4A841DCA138B00B95FD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
