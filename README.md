@@ -4,6 +4,7 @@ Formula parser and evaluator
 
 ## Usage
 
+*TBD*
 
 ## Requirements
 
@@ -12,6 +13,9 @@ Formula parser and evaluator
 
 ## Installation
 
+*TBD*
+
+<!--
 ### CocoaPods
 
 Formulitic is available through [CocoaPods](http://cocoapods.org).
@@ -30,6 +34,7 @@ To install it, simply add the following line to your Cartfile:
 ```
 github "hironytic/Formulitic"
 ```
+-->
 
 ## Author
 
