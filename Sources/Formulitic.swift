@@ -25,11 +25,15 @@
 
 import Foundation
 
-open class Formulitic {
+public class Formulitic {
     private var functions: [String: Function]
+    public var dereferencer: (_ name: String, _ context: EvaluateContext) -> Value
     
     public init() {
         functions = [:]
+        dereferencer = { (name, context) in
+            return ErrorValue.invalidReference
+        }
         installFunctions(Functions.BuiltIn)
     }
     
@@ -39,13 +43,12 @@ open class Formulitic {
         }
     }
     
-    public func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
+    func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
         guard let function = functions[name] else { return ErrorValue.unknownFunction }
         return function(self, parameters, context)
     }
     
-    public func dereference(name: String, context: EvaluateContext) -> Value {
-        // TODO:
-        fatalError()
+    func dereference(name: String, context: EvaluateContext) -> Value {
+        return dereferencer(name, context)
     }
 }
