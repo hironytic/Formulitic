@@ -37,7 +37,7 @@ public struct DoubleValue: Value, Numerable, Hashable {
         case .numerable:
             return self
         case .stringable:
-            return StringValue(string: "\(number)")     // FIXME:
+            return StringValue(string: "\(number)")
         case .booleanable:
             return BoolValue(isTrue: !number.isZero)
         default:

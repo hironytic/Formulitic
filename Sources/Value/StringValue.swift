@@ -37,7 +37,13 @@ public struct StringValue: Value, Stringable, Hashable {
         case .stringable:
             return self
         case .numerable:
-            return ErrorValue.invalidValue  // FIXME:
+            let scanner = Scanner(string: string)
+            var number: Double = 0.0
+            if scanner.scanDouble(&number) && scanner.isAtEnd {
+                return DoubleValue(number: number)
+            } else {
+                return ErrorValue.invalidValue
+            }
         case .booleanable:
             return BoolValue(isTrue: false)
         default:
