@@ -1,5 +1,5 @@
 //
-// Formulitic.swift
+// FuncName.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,16 +25,37 @@
 
 import Foundation
 
-open class Formulitic {
-    public weak var delegate: FormuliticDelegate? = nil
+public struct FuncName {
+    private init() {}
     
-    public func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
-        // TODO:
-        fatalError()
+    public struct Operator {
+        private init() {}
+        
+        public static let equalTo = "=="
+        public static let notEqualTo = "!="
+        public static let lessThan = "<"
+        public static let lessThanOrEqualTo = "<="
+        public static let greaterThan = ">"
+        public static let greaterThanOrEqualTo = ">="
+        
+        public static let add = "+"
+        public static let subtract = "-"
+        public static let multiply = "*"
+        public static let divide = "/"
+        
+        public static let unaryPlus = "+()"
+        public static let unaryNegate = "-()"
     }
     
-    public func dereference(name: String, context: EvaluateContext) -> Value {
-        // TODO:
-        fatalError()
+    public struct String {
+        private init() {}
+        
+        public static let concatenate = "concatenate"
+    }
+    
+    public struct Math {
+        private init() {}
+        
+        public static let power = "power"
     }
 }

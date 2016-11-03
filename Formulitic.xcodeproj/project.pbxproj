@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5034D4A71DCB09A600666762 /* FuncName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A61DCB09A600666762 /* FuncName.swift */; };
 		507E4A751DCA138B00B95FD1 /* Formulitic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */; };
 		507E4A7A1DCA138B00B95FD1 /* FormuliticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A791DCA138B00B95FD1 /* FormuliticTests.swift */; };
 		507E4A7C1DCA138B00B95FD1 /* Formulitic.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E4A6E1DCA138A00B95FD1 /* Formulitic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5034D4A61DCB09A600666762 /* FuncName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncName.swift; sourceTree = "<group>"; };
 		507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Formulitic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		507E4A6E1DCA138A00B95FD1 /* Formulitic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Formulitic.h; sourceTree = "<group>"; };
 		507E4A6F1DCA138A00B95FD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5034D4A51DCB098F00666762 /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				5034D4A61DCB09A600666762 /* FuncName.swift */,
+			);
+			path = Function;
+			sourceTree = "<group>";
+		};
 		507E4A611DCA138A00B95FD1 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +132,7 @@
 				507E4A8A1DCA1EC400B95FD1 /* FormuliticDelegate.swift */,
 				507E4A941DCA2BE900B95FD1 /* Evaluation */,
 				507E4A881DCA1E9F00B95FD1 /* Expression */,
+				5034D4A51DCB098F00666762 /* Function */,
 				50A054111DCAC62900D4F7D9 /* Parser */,
 				507E4A891DCA1E9F00B95FD1 /* Value */,
 			);
@@ -291,6 +302,7 @@
 				507E4A931DCA2B2200B95FD1 /* EmptyValue.swift in Sources */,
 				50A0540E1DCABADD00D4F7D9 /* FunctionExpression.swift in Sources */,
 				50A0540C1DCAB9BC00D4F7D9 /* ValueExpression.swift in Sources */,
+				5034D4A71DCB09A600666762 /* FuncName.swift in Sources */,
 				507E4A911DCA291000B95FD1 /* ErrorValue.swift in Sources */,
 				507E4A8F1DCA20E500B95FD1 /* Value.swift in Sources */,
 			);
