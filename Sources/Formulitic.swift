@@ -26,8 +26,6 @@
 import Foundation
 
 open class Formulitic {
-    public weak var delegate: FormuliticDelegate? = nil
-    
     public func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
         // TODO:
         fatalError()
