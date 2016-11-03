@@ -26,7 +26,19 @@
 import Foundation
 
 public class Formulitic {
-    func parse(formulaString: String) -> Expression {
+    public weak var delegate: FormuliticDelegate? = nil
+    
+    public func parse(formulaString: String) -> Expression {
+        // TODO:
+        fatalError()
+    }
+    
+    public func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
+        // TODO:
+        fatalError()
+    }
+    
+    public func dereference(name: String, context: EvaluateContext) -> Value {
         // TODO:
         fatalError()
     }

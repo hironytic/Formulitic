@@ -1,5 +1,5 @@
 //
-// Expression.swift
+// FormulaParser.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,7 +25,6 @@
 
 import Foundation
 
-/// An expression in a formula
-public protocol Expression {
-    func evaluate(with context: EvaluateContext) -> Value
+public class FormulaParser {
+    
 }

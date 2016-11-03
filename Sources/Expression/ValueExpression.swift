@@ -1,5 +1,5 @@
 //
-// Expression.swift
+// ValueExpression.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,7 +25,14 @@
 
 import Foundation
 
-/// An expression in a formula
-public protocol Expression {
-    func evaluate(with context: EvaluateContext) -> Value
+public class ValueExpression: Expression {
+    private let value: Value
+    
+    public init(formulitic: Formulitic, value: Value) {
+        self.value = value
+    }
+    
+    public func evaluate(with context: EvaluateContext) -> Value {
+        return value
+    }
 }

@@ -25,6 +25,6 @@
 
 import Foundation
 
-public protocol FormuliticDelegate {
+public protocol FormuliticDelegate: class {
     
 }

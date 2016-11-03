@@ -60,3 +60,8 @@ public protocol Booleanable {
     /// Returns a holding boolean value.
     var isTrue: Bool { get }
 }
+
+/// A capability of reference values.
+public protocol Referencable {
+    func dereference(by formulitic: Formulitic, with context: EvaluateContext) -> Value
+}

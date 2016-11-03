@@ -26,9 +26,6 @@
 import Foundation
 
 open class EvaluateContext {
-    public let formulitic: Formulitic
-    
-    public init(formulitic: Formulitic) {
-        self.formulitic = formulitic
+    public init() {
     }
 }

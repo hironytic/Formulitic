@@ -25,6 +25,18 @@
 
 import Foundation
 
-public protocol ReferenceValue: Value {
+public struct ReferenceValue: Value, Referencable {
+    private let name: String
+
+    public init(name: String) {
+        self.name = name
+    }
     
+    public func cast(to capability: ValueCapability, context: EvaluateContext) -> Value {
+        return ErrorValue.invalidValue
+    }
+    
+    public func dereference(by formulitic: Formulitic, with context: EvaluateContext) -> Value {
+        return formulitic.dereference(name: name, context: context)
+    }
 }

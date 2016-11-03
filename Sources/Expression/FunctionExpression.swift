@@ -1,5 +1,5 @@
 //
-// Expression.swift
+// FunctionExpression.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,7 +25,18 @@
 
 import Foundation
 
-/// An expression in a formula
-public protocol Expression {
-    func evaluate(with context: EvaluateContext) -> Value
+public class FunctionExpression: Expression {
+    private let formulitic: Formulitic
+    private let name: String
+    private let parameters: [Expression]
+    
+    public init(formulitic: Formulitic, name: String, parameters: [Expression]) {
+        self.formulitic = formulitic
+        self.name = name
+        self.parameters = parameters
+    }
+    
+    public func evaluate(with context: EvaluateContext) -> Value {
+        return formulitic.evaluateFunction(name: name, parameters: parameters, context: context)
+    }
 }
