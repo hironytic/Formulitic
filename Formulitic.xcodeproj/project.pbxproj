@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5034D4A71DCB09A600666762 /* FuncName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A61DCB09A600666762 /* FuncName.swift */; };
+		5034D4A71DCB09A600666762 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A61DCB09A600666762 /* Function.swift */; };
+		5034D4A91DCB20F300666762 /* BuiltInFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A81DCB20F300666762 /* BuiltInFunctions.swift */; };
 		507E4A751DCA138B00B95FD1 /* Formulitic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */; };
 		507E4A7A1DCA138B00B95FD1 /* FormuliticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A791DCA138B00B95FD1 /* FormuliticTests.swift */; };
 		507E4A7C1DCA138B00B95FD1 /* Formulitic.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E4A6E1DCA138A00B95FD1 /* Formulitic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,7 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5034D4A61DCB09A600666762 /* FuncName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncName.swift; sourceTree = "<group>"; };
+		5034D4A61DCB09A600666762 /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		5034D4A81DCB20F300666762 /* BuiltInFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuiltInFunctions.swift; sourceTree = "<group>"; };
 		507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Formulitic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		507E4A6E1DCA138A00B95FD1 /* Formulitic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Formulitic.h; sourceTree = "<group>"; };
 		507E4A6F1DCA138A00B95FD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,7 +83,8 @@
 		5034D4A51DCB098F00666762 /* Function */ = {
 			isa = PBXGroup;
 			children = (
-				5034D4A61DCB09A600666762 /* FuncName.swift */,
+				5034D4A61DCB09A600666762 /* Function.swift */,
+				5034D4A81DCB20F300666762 /* BuiltInFunctions.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				50A054131DCAC68500D4F7D9 /* FormulaParser.swift in Sources */,
 				507E4A871DCA1E3500B95FD1 /* Formulitic.swift in Sources */,
 				507E4A9E1DCA37EC00B95FD1 /* ReferenceValue.swift in Sources */,
+				5034D4A91DCB20F300666762 /* BuiltInFunctions.swift in Sources */,
 				507E4A961DCA2C0700B95FD1 /* EvaluateContext.swift in Sources */,
 				507E4A9A1DCA373400B95FD1 /* BoolValue.swift in Sources */,
 				507E4A9C1DCA37A900B95FD1 /* StringValue.swift in Sources */,
@@ -298,7 +302,7 @@
 				507E4A931DCA2B2200B95FD1 /* EmptyValue.swift in Sources */,
 				50A0540E1DCABADD00D4F7D9 /* FunctionExpression.swift in Sources */,
 				50A0540C1DCAB9BC00D4F7D9 /* ValueExpression.swift in Sources */,
-				5034D4A71DCB09A600666762 /* FuncName.swift in Sources */,
+				5034D4A71DCB09A600666762 /* Function.swift in Sources */,
 				507E4A911DCA291000B95FD1 /* ErrorValue.swift in Sources */,
 				507E4A8F1DCA20E500B95FD1 /* Value.swift in Sources */,
 			);

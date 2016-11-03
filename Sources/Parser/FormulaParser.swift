@@ -155,19 +155,19 @@ public class FormulaParser {
                 default:
                     currentPosition = pos2
                 }
-                funcName = FuncName.Operator.equalTo
+                funcName = FuncName.BuiltIn.equalTo
                 
             case "<"?:
                 let pos2 = currentPosition
                 let ch2 = consumeCharacter()
                 switch ch2 {
                 case ">"?:
-                    funcName = FuncName.Operator.notEqualTo
+                    funcName = FuncName.BuiltIn.notEqualTo
                 case "="?:
-                    funcName = FuncName.Operator.lessThanOrEqualTo
+                    funcName = FuncName.BuiltIn.lessThanOrEqualTo
                 default:
                     currentPosition = pos2
-                    funcName = FuncName.Operator.lessThan
+                    funcName = FuncName.BuiltIn.lessThan
                 }
             
             case ">"?:
@@ -175,17 +175,17 @@ public class FormulaParser {
                 let ch2 = consumeCharacter()
                 switch ch2 {
                 case "="?:
-                    funcName = FuncName.Operator.greaterThanOrEqualTo
+                    funcName = FuncName.BuiltIn.greaterThanOrEqualTo
                 default:
                     currentPosition = pos2
-                    funcName = FuncName.Operator.greaterThan
+                    funcName = FuncName.BuiltIn.greaterThan
                 }
                 
             case "!"?:
                 let ch2 = consumeCharacter()
                 switch ch2 {
                 case "="?:
-                    funcName = FuncName.Operator.notEqualTo
+                    funcName = FuncName.BuiltIn.notEqualTo
                 default:
                     currentPosition = pos1
                     break loop
@@ -221,7 +221,7 @@ public class FormulaParser {
             
             let exp1 = result
             let exp2 = try parseAdditiveExpression()
-            result = FunctionExpression(formulitic: formulitic, name: FuncName.String.concatenate, parameters: [exp1, exp2])
+            result = FunctionExpression(formulitic: formulitic, name: FuncName.BuiltIn.concatenate, parameters: [exp1, exp2])
         }
         
         return result
@@ -237,9 +237,9 @@ public class FormulaParser {
             let ch = consumeCharacter()
             switch ch {
             case "+"?:
-                funcName = FuncName.Operator.add
+                funcName = FuncName.BuiltIn.add
             case "-"?:
-                funcName = FuncName.Operator.subtract
+                funcName = FuncName.BuiltIn.subtract
             default:
                 currentPosition = pos
                 break loop
@@ -263,9 +263,9 @@ public class FormulaParser {
             let ch = consumeCharacter()
             switch ch {
             case "*"?:
-                funcName = FuncName.Operator.multiply
+                funcName = FuncName.BuiltIn.multiply
             case "/"?:
-                funcName = FuncName.Operator.divide
+                funcName = FuncName.BuiltIn.divide
             default:
                 currentPosition = pos
                 break loop
@@ -296,7 +296,7 @@ public class FormulaParser {
             
             let exp1 = result
             let exp2 = try parsePrefixUnaryExpression()
-            result = FunctionExpression(formulitic: formulitic, name: FuncName.Math.power, parameters: [exp1, exp2])
+            result = FunctionExpression(formulitic: formulitic, name: FuncName.BuiltIn.power, parameters: [exp1, exp2])
         }
         
         return result
@@ -310,9 +310,9 @@ public class FormulaParser {
             let ch = consumeCharacter()
             switch ch {
             case "+"?:
-                funcNames.append(FuncName.Operator.unaryPlus)
+                funcNames.append(FuncName.BuiltIn.unaryPlus)
             case "-"?:
-                funcNames.append(FuncName.Operator.unaryNegate)
+                funcNames.append(FuncName.BuiltIn.unaryNegate)
             default:
                 currentPosition = pos
                 break loop

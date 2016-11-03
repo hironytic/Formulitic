@@ -1,5 +1,5 @@
 //
-// FuncName.swift
+// Function.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,37 +25,12 @@
 
 import Foundation
 
+public typealias Function = (_ formulitic: Formulitic, _ parameters: [Expression], _ context: EvaluateContext) -> Value
+
 public struct FuncName {
     private init() {}
-    
-    public struct Operator {
-        private init() {}
-        
-        public static let equalTo = "=="
-        public static let notEqualTo = "!="
-        public static let lessThan = "<"
-        public static let lessThanOrEqualTo = "<="
-        public static let greaterThan = ">"
-        public static let greaterThanOrEqualTo = ">="
-        
-        public static let add = "+"
-        public static let subtract = "-"
-        public static let multiply = "*"
-        public static let divide = "/"
-        
-        public static let unaryPlus = "+()"
-        public static let unaryNegate = "-()"
-    }
-    
-    public struct String {
-        private init() {}
-        
-        public static let concatenate = "concatenate"
-    }
-    
-    public struct Math {
-        private init() {}
-        
-        public static let power = "power"
-    }
+}
+
+public struct Functions {
+    private init() {}
 }
