@@ -223,12 +223,12 @@ private func comparisonOperator(matcher: @escaping (Int) -> Bool) -> Function {
             if result == 0 {
                 // both types are same, compare values
                 switch param1 {
-                case is Numerable:
-                    result = compareNumerable(param1 as! Numerable, param2 as! Numerable)
-                case is Stringable:
-                    result = compareStringable(param1 as! Stringable, param2 as! Stringable)
-                case is Booleanable:
-                    result = compareBooleanable(param1 as! Booleanable, param2 as! Booleanable)
+                case let paramNum1 as Numerable:
+                    result = compareNumerable(paramNum1, param2 as! Numerable)
+                case let paramStr1 as Stringable:
+                    result = compareStringable(paramStr1, param2 as! Stringable)
+                case let paramBool1 as Booleanable:
+                    result = compareBooleanable(paramBool1, param2 as! Booleanable)
                 default:
                     assertionFailure("unexpected value")
                     break
@@ -258,7 +258,9 @@ private let add = binaryOperator(dereferencing({ (formulitic, operand1, operand2
         return numerableValue2
     }
     
-    let result = (numerableValue1 as! Numerable).number + (numerableValue2 as! Numerable).number
+    guard let numerable1 = numerableValue1 as? Numerable,
+          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    let result = numerable1.number + numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
     }
@@ -276,7 +278,9 @@ private let subtract = binaryOperator(dereferencing({ (formulitic, operand1, ope
         return numerableValue2
     }
     
-    let result = (numerableValue1 as! Numerable).number - (numerableValue2 as! Numerable).number
+    guard let numerable1 = numerableValue1 as? Numerable,
+          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    let result = numerable1.number - numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
     }
@@ -294,7 +298,9 @@ private let multiply = binaryOperator(dereferencing({ (formulitic, operand1, ope
         return numerableValue2
     }
     
-    let result = (numerableValue1 as! Numerable).number * (numerableValue2 as! Numerable).number
+    guard let numerable1 = numerableValue1 as? Numerable,
+          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    let result = numerable1.number * numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
     }
@@ -312,7 +318,9 @@ private let divide = binaryOperator(dereferencing({ (formulitic, operand1, opera
         return numerableValue2
     }
     
-    let result = (numerableValue1 as! Numerable).number / (numerableValue2 as! Numerable).number
+    guard let numerable1 = numerableValue1 as? Numerable,
+          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    let result = numerable1.number / numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
     }
@@ -342,7 +350,9 @@ private let concatenate = binaryOperator(dereferencing({ (formulitic, operand1, 
         return stringableValue2
     }
     
-    let result = (stringableValue1 as! Stringable).string + (stringableValue2 as! Stringable).string
+    guard let stringable1 = stringableValue1 as? Stringable,
+          let stringable2 = stringableValue2 as? Stringable else { return ErrorValue.generic }
+    let result = stringable1.string + stringable2.string
     return StringValue(string: result)
 }))
 
@@ -357,7 +367,9 @@ private let power = binaryOperator(dereferencing({ (formulitic, operand1, operan
         return numerableValue2
     }
     
-    let result = pow((numerableValue1 as! Numerable).number, (numerableValue2 as! Numerable).number)
+    guard let numerable1 = numerableValue1 as? Numerable,
+          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    let result = pow(numerable1.number, numerable2.number)
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
     }
