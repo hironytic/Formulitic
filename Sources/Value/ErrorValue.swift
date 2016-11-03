@@ -33,6 +33,7 @@ public enum ErrorValue: Value, Errorable, Hashable {
     case invalidArgumentCount
     case circularReference
     case invalidReference
+    case nan
     
     public func cast(to capability: ValueCapability, context: EvaluateContext) -> Value {
         return self

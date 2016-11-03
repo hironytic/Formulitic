@@ -26,9 +26,22 @@
 import Foundation
 
 open class Formulitic {
+    private var functions: [String: Function]
+    
+    public init() {
+        functions = [:]
+        installFunctions(Functions.BuiltIn)
+    }
+    
+    public func installFunctions(_ functions: [String: Function]) {
+        for (key, value) in functions {
+            self.functions.updateValue(value, forKey: key)
+        }
+    }
+    
     public func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
-        // TODO:
-        fatalError()
+        guard let function = functions[name] else { return ErrorValue.unknownFunction }
+        return function(self, parameters, context)
     }
     
     public func dereference(name: String, context: EvaluateContext) -> Value {
