@@ -34,7 +34,7 @@ public class Formulitic {
         dereferencer = { (name, context) in
             return ErrorValue.invalidReference
         }
-        installFunctions(Functions.BuiltIn)
+        installFunctions(Functions.Operator)
     }
     
     public func installFunctions(_ functions: [String: Function]) {

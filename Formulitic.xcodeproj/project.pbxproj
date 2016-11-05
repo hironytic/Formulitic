@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5034D4A71DCB09A600666762 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A61DCB09A600666762 /* Function.swift */; };
-		5034D4A91DCB20F300666762 /* BuiltInFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A81DCB20F300666762 /* BuiltInFunctions.swift */; };
+		5034D4A91DCB20F300666762 /* OperatorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A81DCB20F300666762 /* OperatorFunctions.swift */; };
 		507E4A751DCA138B00B95FD1 /* Formulitic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */; };
 		507E4A7A1DCA138B00B95FD1 /* FormuliticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A791DCA138B00B95FD1 /* FormuliticTests.swift */; };
 		507E4A7C1DCA138B00B95FD1 /* Formulitic.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E4A6E1DCA138A00B95FD1 /* Formulitic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		5034D4A61DCB09A600666762 /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
-		5034D4A81DCB20F300666762 /* BuiltInFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuiltInFunctions.swift; sourceTree = "<group>"; };
+		5034D4A81DCB20F300666762 /* OperatorFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorFunctions.swift; sourceTree = "<group>"; };
 		507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Formulitic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		507E4A6E1DCA138A00B95FD1 /* Formulitic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Formulitic.h; sourceTree = "<group>"; };
 		507E4A6F1DCA138A00B95FD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				5034D4A61DCB09A600666762 /* Function.swift */,
-				5034D4A81DCB20F300666762 /* BuiltInFunctions.swift */,
+				5034D4A81DCB20F300666762 /* OperatorFunctions.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -129,12 +129,12 @@
 		507E4A851DCA14C400B95FD1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				507E4A861DCA1E3500B95FD1 /* Formulitic.swift */,
-				507E4A941DCA2BE900B95FD1 /* Evaluation */,
 				507E4A881DCA1E9F00B95FD1 /* Expression */,
 				5034D4A51DCB098F00666762 /* Function */,
-				50A054111DCAC62900D4F7D9 /* Parser */,
 				507E4A891DCA1E9F00B95FD1 /* Value */,
+				507E4A951DCA2C0700B95FD1 /* EvaluateContext.swift */,
+				50A054121DCAC68500D4F7D9 /* FormulaParser.swift */,
+				507E4A861DCA1E3500B95FD1 /* Formulitic.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -143,8 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				507E4A8C1DCA1F4E00B95FD1 /* Expression.swift */,
-				50A0540B1DCAB9BC00D4F7D9 /* ValueExpression.swift */,
 				50A0540D1DCABADD00D4F7D9 /* FunctionExpression.swift */,
+				50A0540B1DCAB9BC00D4F7D9 /* ValueExpression.swift */,
 			);
 			path = Expression;
 			sourceTree = "<group>";
@@ -152,31 +152,15 @@
 		507E4A891DCA1E9F00B95FD1 /* Value */ = {
 			isa = PBXGroup;
 			children = (
+				507E4A8E1DCA20E500B95FD1 /* Value.swift */,
 				507E4A991DCA373400B95FD1 /* BoolValue.swift */,
 				507E4A971DCA36F600B95FD1 /* DoubleValue.swift */,
 				507E4A921DCA2B2200B95FD1 /* EmptyValue.swift */,
 				507E4A901DCA291000B95FD1 /* ErrorValue.swift */,
 				507E4A9D1DCA37EC00B95FD1 /* ReferenceValue.swift */,
 				507E4A9B1DCA37A900B95FD1 /* StringValue.swift */,
-				507E4A8E1DCA20E500B95FD1 /* Value.swift */,
 			);
 			path = Value;
-			sourceTree = "<group>";
-		};
-		507E4A941DCA2BE900B95FD1 /* Evaluation */ = {
-			isa = PBXGroup;
-			children = (
-				507E4A951DCA2C0700B95FD1 /* EvaluateContext.swift */,
-			);
-			path = Evaluation;
-			sourceTree = "<group>";
-		};
-		50A054111DCAC62900D4F7D9 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				50A054121DCAC68500D4F7D9 /* FormulaParser.swift */,
-			);
-			path = Parser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +277,7 @@
 				50A054131DCAC68500D4F7D9 /* FormulaParser.swift in Sources */,
 				507E4A871DCA1E3500B95FD1 /* Formulitic.swift in Sources */,
 				507E4A9E1DCA37EC00B95FD1 /* ReferenceValue.swift in Sources */,
-				5034D4A91DCB20F300666762 /* BuiltInFunctions.swift in Sources */,
+				5034D4A91DCB20F300666762 /* OperatorFunctions.swift in Sources */,
 				507E4A961DCA2C0700B95FD1 /* EvaluateContext.swift in Sources */,
 				507E4A9A1DCA373400B95FD1 /* BoolValue.swift in Sources */,
 				507E4A9C1DCA37A900B95FD1 /* StringValue.swift in Sources */,

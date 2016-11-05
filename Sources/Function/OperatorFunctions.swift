@@ -1,5 +1,5 @@
 //
-// BuiltInFunctions.swift
+// OperatorFunctions.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -26,7 +26,7 @@
 import Foundation
 
 public extension FuncName {
-    public struct BuiltIn {
+    public struct Operator {
         private init() {}
         
         public static let equalTo = "=="
@@ -50,24 +50,24 @@ public extension FuncName {
 }
 
 public extension Functions {
-    public static let BuiltIn: [String: Function] = [
-        FuncName.BuiltIn.equalTo: equalTo,
-        FuncName.BuiltIn.notEqualTo: notEqualTo,
-        FuncName.BuiltIn.lessThan: lessThan,
-        FuncName.BuiltIn.lessThanOrEqualTo: lessThanOrEqualTo,
-        FuncName.BuiltIn.greaterThan: greaterThan,
-        FuncName.BuiltIn.greaterThanOrEqualTo: greaterThanOrEqualTo,
+    public static let Operator: [String: Function] = [
+        FuncName.Operator.equalTo: equalTo,
+        FuncName.Operator.notEqualTo: notEqualTo,
+        FuncName.Operator.lessThan: lessThan,
+        FuncName.Operator.lessThanOrEqualTo: lessThanOrEqualTo,
+        FuncName.Operator.greaterThan: greaterThan,
+        FuncName.Operator.greaterThanOrEqualTo: greaterThanOrEqualTo,
         
-        FuncName.BuiltIn.add: add,
-        FuncName.BuiltIn.subtract: subtract,
-        FuncName.BuiltIn.multiply: multiply,
-        FuncName.BuiltIn.divide: divide,
+        FuncName.Operator.add: add,
+        FuncName.Operator.subtract: subtract,
+        FuncName.Operator.multiply: multiply,
+        FuncName.Operator.divide: divide,
         
-        FuncName.BuiltIn.unaryPlus: unaryPlus,
-        FuncName.BuiltIn.unaryNegate: unaryNegate,
+        FuncName.Operator.unaryPlus: unaryPlus,
+        FuncName.Operator.unaryNegate: unaryNegate,
         
-        FuncName.BuiltIn.concatenate: concatenate,
-        FuncName.BuiltIn.power: power,
+        FuncName.Operator.concatenate: concatenate,
+        FuncName.Operator.power: power,
     ]
 }
 
