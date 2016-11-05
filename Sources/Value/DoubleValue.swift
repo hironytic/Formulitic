@@ -26,7 +26,7 @@
 import Foundation
 
 public struct DoubleValue: Value, Numerable, Hashable {
-    public private(set) var number: Double
+    public let number: Double
     
     public init(number: Double) {
         self.number = number
@@ -66,4 +66,10 @@ public struct DoubleValue: Value, Numerable, Hashable {
             return number.hashValue
         }
     }    
+}
+
+extension DoubleValue: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "DoubleValue(\(number))"
+    }
 }

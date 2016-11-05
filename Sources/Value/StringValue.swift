@@ -26,7 +26,7 @@
 import Foundation
 
 public struct StringValue: Value, Stringable, Hashable {
-    public private(set) var string: String
+    public let string: String
     
     public init(string: String) {
         self.string = string
@@ -71,5 +71,11 @@ public struct StringValue: Value, Stringable, Hashable {
         get {
             return string.hashValue
         }
+    }
+}
+
+extension StringValue: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "StringValue(\"\(string)\")"
     }
 }

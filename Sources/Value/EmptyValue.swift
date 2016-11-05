@@ -65,3 +65,9 @@ public struct EmptyValue: Value, Hashable {
         }
     }
 }
+
+extension EmptyValue: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "EmptyValue"
+    }
+}

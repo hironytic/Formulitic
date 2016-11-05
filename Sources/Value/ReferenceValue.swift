@@ -26,7 +26,7 @@
 import Foundation
 
 public struct ReferenceValue: Value, Referencable {
-    private let name: String
+    public let name: String
 
     public init(name: String) {
         self.name = name
@@ -38,5 +38,11 @@ public struct ReferenceValue: Value, Referencable {
     
     public func dereference(by formulitic: Formulitic, with context: EvaluateContext) -> Value {
         return formulitic.dereference(name: name, context: context)
+    }
+}
+
+extension ReferenceValue: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "ReferenceValue({\(name)})"
     }
 }

@@ -26,7 +26,7 @@
 import Foundation
 
 public struct BoolValue: Value, Booleanable, Hashable {
-    public private(set) var isTrue: Bool
+    public let isTrue: Bool
     
     public init(isTrue: Bool) {
         self.isTrue = isTrue
@@ -65,5 +65,11 @@ public struct BoolValue: Value, Booleanable, Hashable {
         get {
             return isTrue.hashValue
         }
+    }
+}
+
+extension BoolValue: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "BoolValue(\(isTrue))"
     }
 }

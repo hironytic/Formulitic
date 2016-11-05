@@ -63,5 +63,6 @@ public protocol Booleanable {
 
 /// A capability of reference values.
 public protocol Referencable {
+    var name: String { get }
     func dereference(by formulitic: Formulitic, with context: EvaluateContext) -> Value
 }
