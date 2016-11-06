@@ -10,7 +10,6 @@
 		5034D4A71DCB09A600666762 /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A61DCB09A600666762 /* Function.swift */; };
 		5034D4A91DCB20F300666762 /* OperatorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A81DCB20F300666762 /* OperatorFunctions.swift */; };
 		507E4A751DCA138B00B95FD1 /* Formulitic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */; };
-		507E4A7A1DCA138B00B95FD1 /* FormuliticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A791DCA138B00B95FD1 /* FormuliticTests.swift */; };
 		507E4A7C1DCA138B00B95FD1 /* Formulitic.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E4A6E1DCA138A00B95FD1 /* Formulitic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		507E4A871DCA1E3500B95FD1 /* Formulitic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A861DCA1E3500B95FD1 /* Formulitic.swift */; };
 		507E4A8D1DCA1F4E00B95FD1 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A8C1DCA1F4E00B95FD1 /* Expression.swift */; };
@@ -28,6 +27,7 @@
 		50DF07221DCF1AF700FF034E /* ReferenceProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF07211DCF1AF700FF034E /* ReferenceProducer.swift */; };
 		50DF07241DCF1B3F00FF034E /* BasicReferenceProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF07231DCF1B3F00FF034E /* BasicReferenceProducer.swift */; };
 		50DF07261DCF1B8500FF034E /* NullReferenceProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF07251DCF1B8500FF034E /* NullReferenceProducer.swift */; };
+		50DF072B1DCF567600FF034E /* FormulaParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF07271DCF559400FF034E /* FormulaParserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,6 @@
 		507E4A6E1DCA138A00B95FD1 /* Formulitic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Formulitic.h; sourceTree = "<group>"; };
 		507E4A6F1DCA138A00B95FD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		507E4A741DCA138B00B95FD1 /* FormuliticTests_iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FormuliticTests_iOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		507E4A791DCA138B00B95FD1 /* FormuliticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormuliticTests.swift; sourceTree = "<group>"; };
 		507E4A7B1DCA138B00B95FD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		507E4A861DCA1E3500B95FD1 /* Formulitic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formulitic.swift; sourceTree = "<group>"; };
 		507E4A8C1DCA1F4E00B95FD1 /* Expression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		50DF07211DCF1AF700FF034E /* ReferenceProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceProducer.swift; sourceTree = "<group>"; };
 		50DF07231DCF1B3F00FF034E /* BasicReferenceProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicReferenceProducer.swift; sourceTree = "<group>"; };
 		50DF07251DCF1B8500FF034E /* NullReferenceProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullReferenceProducer.swift; sourceTree = "<group>"; };
+		50DF07271DCF559400FF034E /* FormulaParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaParserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +126,7 @@
 		507E4A781DCA138B00B95FD1 /* FormuliticTests */ = {
 			isa = PBXGroup;
 			children = (
-				507E4A791DCA138B00B95FD1 /* FormuliticTests.swift */,
+				50DF07271DCF559400FF034E /* FormulaParserTests.swift */,
 				507E4A7B1DCA138B00B95FD1 /* Info.plist */,
 			);
 			path = FormuliticTests;
@@ -324,7 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				507E4A7A1DCA138B00B95FD1 /* FormuliticTests.swift in Sources */,
+				50DF072B1DCF567600FF034E /* FormulaParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
