@@ -25,7 +25,10 @@
 
 import Foundation
 
-open class EvaluateContext {
-    public init() {
-    }
+public protocol EvaluateContext {
+    
+}
+
+public class DefaultEvaluateContext: EvaluateContext {
+    public init() { }
 }

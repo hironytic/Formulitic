@@ -34,7 +34,7 @@ public class Formula {
         self.expression = expression
     }
     
-    public func evaluate(with context: EvaluateContext) -> Value {
+    public func evaluate(with context: EvaluateContext = DefaultEvaluateContext()) -> Value {
         let value = expression.evaluate(with: context)
         if value is Errorable {
             return value
