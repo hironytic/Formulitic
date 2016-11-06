@@ -27,11 +27,11 @@ import Foundation
 
 public class Formulitic {
     private var functions: [String: Function]
-    public var referenceProducer: ReferenceProducer
+    public let referenceProducer: ReferenceProducer
     
-    public init() {
+    public init(referenceProducer: ReferenceProducer = NullReferenceProducer()) {
         functions = [:]
-        referenceProducer = NullReferenceProducer()
+        self.referenceProducer = referenceProducer
         
         installFunctions(Functions.Operator)
     }
