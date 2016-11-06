@@ -1,5 +1,5 @@
 //
-// Formula.swift
+// ReferenceProducer.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,23 +25,6 @@
 
 import Foundation
 
-public class Formula {
-    private let formulitic: Formulitic
-    private let expression: Expression
-    
-    init(formulitic: Formulitic, expression: Expression) {
-        self.formulitic = formulitic
-        self.expression = expression
-    }
-    
-    public func evaluate(with context: EvaluateContext) -> Value {
-        let value = expression.evaluate(with: context)
-        if value is Errorable {
-            return value
-        } else if let referableValue = value as? Referable {
-            return referableValue.dereference(with: context)
-        } else {
-            return value
-        }
-    }
+public protocol ReferenceProducer {
+    func reference(for name: String) -> Value & Referable
 }

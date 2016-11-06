@@ -30,6 +30,12 @@ public protocol Value {
     func cast(to capability: ValueCapability, context: EvaluateContext) -> Value
 }
 
+public extension Value {
+    func cast(to capability: ValueCapability, context: EvaluateContext) -> Value {
+        return ErrorValue.invalidValue
+    }
+}
+
 /// A type of some value's capability.
 public enum ValueCapability {
     case errorable
@@ -62,7 +68,18 @@ public protocol Booleanable {
 }
 
 /// A capability of reference values.
-public protocol Referencable {
-    var name: String { get }
-    func dereference(by formulitic: Formulitic, with context: EvaluateContext) -> Value
+public protocol Referable {    
+    /// Retrieves an actual value.
+    /// - Parameter context: An EvaluateContext object
+    /// - Returns: Actual value
+    func dereference(with context: EvaluateContext) -> Value
+
+    /// Calls the closure on each reference that this object refers to.
+    ///
+    /// If this object refers to multiple value, the closure is called multiple times.
+    /// If this object refers to only one value, the closure is called only once and the `refValue` parameter passed to it can be this object.
+    ///
+    /// - Parameter body: A closure called on each reference
+    /// - Parameter refValue: Each reference
+    func forEachReference(_ body: (_ refValue: Value & Referable) -> Void)
 }

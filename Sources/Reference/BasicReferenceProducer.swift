@@ -1,5 +1,5 @@
 //
-// ReferenceValue.swift
+// BasicReferenceProducer.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,24 +25,38 @@
 
 import Foundation
 
-public struct ReferenceValue: Value, Referencable {
-    public let name: String
-
-    public init(name: String) {
-        self.name = name
+public class BasicReferenceProducer: ReferenceProducer {
+    public var dereferencer: (_ name: String, _ context: EvaluateContext) -> Value
+    
+    public init() {
+        dereferencer = { (name, context) in
+            return ErrorValue.invalidReference
+        }
     }
     
-    public func cast(to capability: ValueCapability, context: EvaluateContext) -> Value {
-        return ErrorValue.invalidValue
+    public func reference(for name: String) -> Referable & Value {
+        return BasicReferenceValue(producer: self, name: name)
     }
     
-    public func dereference(by formulitic: Formulitic, with context: EvaluateContext) -> Value {
-        return formulitic.dereference(name: name, context: context)
+    public func dereference(_ reference: BasicReferenceValue, with context: EvaluateContext) -> Value {
+        return dereferencer(reference.name, context)
     }
 }
 
-extension ReferenceValue: CustomDebugStringConvertible {
-    public var debugDescription: String {
-        return "ReferenceValue({\(name)})"
+public class BasicReferenceValue: Value, Referable {
+    private let producer: BasicReferenceProducer
+    let name: String
+    
+    public init(producer: BasicReferenceProducer, name: String) {
+        self.producer = producer
+        self.name = name
+    }
+    
+    public func dereference(with context: EvaluateContext) -> Value {
+        return producer.dereference(self, with: context)
+    }
+    
+    public func forEachReference(_ body: (_ refValue: Value & Referable) -> Void) {
+        body(self)
     }
 }

@@ -71,11 +71,11 @@ public extension Functions {
     ]
 }
 
-fileprivate typealias BinaryEvaluator = (_ formulitic: Formulitic, _ operand1: Value, _ operand2: Value, _ context: EvaluateContext) -> Value
-fileprivate typealias UnaryEvaluator = (_ formulitic: Formulitic, _ operand: Value, _ context: EvaluateContext) -> Value
+fileprivate typealias BinaryEvaluator = (_ operand1: Value, _ operand2: Value, _ context: EvaluateContext) -> Value
+fileprivate typealias UnaryEvaluator = (_ operand: Value, _ context: EvaluateContext) -> Value
 
 fileprivate func binaryOperator(_ evaluator: @escaping BinaryEvaluator) -> Function {
-    return { (formulitic, parameters, context) in
+    return { (parameters, context) in
         if parameters.count != 2 {
             return ErrorValue.invalidArgumentCount
         }
@@ -92,12 +92,12 @@ fileprivate func binaryOperator(_ evaluator: @escaping BinaryEvaluator) -> Funct
             return operand2
         }
         
-        return evaluator(formulitic, operand1, operand2, context)
+        return evaluator(operand1, operand2, context)
     }
 }
 
 fileprivate func unaryOperator(_ evaluator: @escaping UnaryEvaluator) -> Function {
-    return { (formulitic, parameters, context) in
+    return { (parameters, context) in
         if parameters.count != 1 {
             return ErrorValue.invalidArgumentCount
         }
@@ -108,34 +108,34 @@ fileprivate func unaryOperator(_ evaluator: @escaping UnaryEvaluator) -> Functio
             return operand1
         }
         
-        return evaluator(formulitic, operand1, context)
+        return evaluator(operand1, context)
     }
 }
 
 fileprivate func dereferencing(_ evaluator: @escaping BinaryEvaluator) -> BinaryEvaluator {
-    return { (formulitic, operand1, operand2, context) in
-        let dereferenced1 = (operand1 as? Referencable)?.dereference(by: formulitic, with: context) ?? operand1
+    return { (operand1, operand2, context) in
+        let dereferenced1 = (operand1 as? Referable)?.dereference(with: context) ?? operand1
         if dereferenced1 is Errorable {
             return dereferenced1
         }
         
-        let dereferenced2 = (operand2 as? Referencable)?.dereference(by: formulitic, with: context) ?? operand2
+        let dereferenced2 = (operand2 as? Referable)?.dereference(with: context) ?? operand2
         if dereferenced2 is Errorable {
             return dereferenced2
         }
         
-        return evaluator(formulitic, dereferenced1, dereferenced2, context)
+        return evaluator(dereferenced1, dereferenced2, context)
     }
 }
 
 fileprivate func dereferencing(_ evaluator: @escaping UnaryEvaluator) -> UnaryEvaluator {
-    return { (formulitic, operand, context) in
-        let dereferenced = (operand as? Referencable)?.dereference(by: formulitic, with: context) ?? operand
+    return { (operand, context) in
+        let dereferenced = (operand as? Referable)?.dereference(with: context) ?? operand
         if dereferenced is Errorable {
             return dereferenced
         }
         
-        return evaluator(formulitic, dereferenced, context)
+        return evaluator(dereferenced, context)
     }
 }
 
@@ -195,7 +195,7 @@ fileprivate func compareBooleanable(_ value1: Booleanable, _ value2: Booleanable
 }
 
 fileprivate func comparisonOperator(matcher: @escaping (Int) -> Bool) -> Function {
-    return binaryOperator(dereferencing({ (formulitic, operand1, operand2, context) in
+    return binaryOperator(dereferencing({ (operand1, operand2, context) in
         var param1 = operand1
         var param2 = operand2
         
@@ -247,7 +247,7 @@ fileprivate let lessThanOrEqualTo = comparisonOperator { $0 <= 0 }
 fileprivate let greaterThan = comparisonOperator { $0 > 0 }
 fileprivate let greaterThanOrEqualTo = comparisonOperator { $0 >= 0 }
 
-fileprivate let add = binaryOperator(dereferencing({ (formulitic, operand1, operand2, context) in
+fileprivate let add = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
     if numerableValue1 is Errorable {
         return numerableValue1
@@ -267,7 +267,7 @@ fileprivate let add = binaryOperator(dereferencing({ (formulitic, operand1, oper
     return DoubleValue(number: result)
 }))
 
-fileprivate let subtract = binaryOperator(dereferencing({ (formulitic, operand1, operand2, context) in
+fileprivate func subtractValues(_ operand1: Value, _ operand2: Value, _ context: EvaluateContext) -> Value {
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
     if numerableValue1 is Errorable {
         return numerableValue1
@@ -279,15 +279,17 @@ fileprivate let subtract = binaryOperator(dereferencing({ (formulitic, operand1,
     }
     
     guard let numerable1 = numerableValue1 as? Numerable,
-          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+        let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
     let result = numerable1.number - numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
     }
     return DoubleValue(number: result)
-}))
+}
 
-fileprivate let multiply = binaryOperator(dereferencing({ (formulitic, operand1, operand2, context) in
+fileprivate let subtract = binaryOperator(dereferencing(subtractValues))
+
+fileprivate let multiply = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
     if numerableValue1 is Errorable {
         return numerableValue1
@@ -307,7 +309,7 @@ fileprivate let multiply = binaryOperator(dereferencing({ (formulitic, operand1,
     return DoubleValue(number: result)
 }))
 
-fileprivate let divide = binaryOperator(dereferencing({ (formulitic, operand1, operand2, context) in
+fileprivate let divide = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
     if numerableValue1 is Errorable {
         return numerableValue1
@@ -327,19 +329,22 @@ fileprivate let divide = binaryOperator(dereferencing({ (formulitic, operand1, o
     return DoubleValue(number: result)
 }))
 
-fileprivate let unaryPlus = unaryOperator(dereferencing({ (formulitic, operand, context) in
+fileprivate let unaryPlus = unaryOperator(dereferencing({ (operand, context) in
     return operand
 }))
 
-fileprivate func unaryNegate(_ formulitic: Formulitic, _ parameters: [Expression], _ context: EvaluateContext) -> Value {
+fileprivate func unaryNegate(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
     if parameters.count != 1 {
         return ErrorValue.invalidArgumentCount
     }
-    let zeroValueExpression = ValueExpression(formulitic: formulitic, value: DoubleValue(number: 0))
-    return subtract(formulitic, [zeroValueExpression, parameters[0]], context)
+    let value = parameters[0].evaluate(with: context)
+    if value is Errorable {
+        return value
+    }
+    return subtractValues(DoubleValue(number: 0), value, context)
 }
 
-fileprivate let concatenate = binaryOperator(dereferencing({ (formulitic, operand1, operand2, context) in
+fileprivate let concatenate = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let stringableValue1 = operand1.cast(to: .stringable, context: context)
     if stringableValue1 is Errorable {
         return stringableValue1
@@ -356,7 +361,7 @@ fileprivate let concatenate = binaryOperator(dereferencing({ (formulitic, operan
     return StringValue(string: result)
 }))
 
-fileprivate let power = binaryOperator(dereferencing({ (formulitic, operand1, operand2, context) in
+fileprivate let power = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
     if numerableValue1 is Errorable {
         return numerableValue1

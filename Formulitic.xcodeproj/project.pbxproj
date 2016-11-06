@@ -21,11 +21,13 @@
 		507E4A981DCA36F600B95FD1 /* DoubleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A971DCA36F600B95FD1 /* DoubleValue.swift */; };
 		507E4A9A1DCA373400B95FD1 /* BoolValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A991DCA373400B95FD1 /* BoolValue.swift */; };
 		507E4A9C1DCA37A900B95FD1 /* StringValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A9B1DCA37A900B95FD1 /* StringValue.swift */; };
-		507E4A9E1DCA37EC00B95FD1 /* ReferenceValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A9D1DCA37EC00B95FD1 /* ReferenceValue.swift */; };
 		50A0540C1DCAB9BC00D4F7D9 /* ValueExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A0540B1DCAB9BC00D4F7D9 /* ValueExpression.swift */; };
 		50A0540E1DCABADD00D4F7D9 /* FunctionExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A0540D1DCABADD00D4F7D9 /* FunctionExpression.swift */; };
 		50A054131DCAC68500D4F7D9 /* FormulaParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A054121DCAC68500D4F7D9 /* FormulaParser.swift */; };
 		50DF071E1DCECAA800FF034E /* Formula.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF071D1DCECAA800FF034E /* Formula.swift */; };
+		50DF07221DCF1AF700FF034E /* ReferenceProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF07211DCF1AF700FF034E /* ReferenceProducer.swift */; };
+		50DF07241DCF1B3F00FF034E /* BasicReferenceProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF07231DCF1B3F00FF034E /* BasicReferenceProducer.swift */; };
+		50DF07261DCF1B8500FF034E /* NullReferenceProducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DF07251DCF1B8500FF034E /* NullReferenceProducer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,11 +58,13 @@
 		507E4A971DCA36F600B95FD1 /* DoubleValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleValue.swift; sourceTree = "<group>"; };
 		507E4A991DCA373400B95FD1 /* BoolValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoolValue.swift; sourceTree = "<group>"; };
 		507E4A9B1DCA37A900B95FD1 /* StringValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringValue.swift; sourceTree = "<group>"; };
-		507E4A9D1DCA37EC00B95FD1 /* ReferenceValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceValue.swift; sourceTree = "<group>"; };
 		50A0540B1DCAB9BC00D4F7D9 /* ValueExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueExpression.swift; sourceTree = "<group>"; };
 		50A0540D1DCABADD00D4F7D9 /* FunctionExpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionExpression.swift; sourceTree = "<group>"; };
 		50A054121DCAC68500D4F7D9 /* FormulaParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormulaParser.swift; sourceTree = "<group>"; };
 		50DF071D1DCECAA800FF034E /* Formula.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formula.swift; sourceTree = "<group>"; };
+		50DF07211DCF1AF700FF034E /* ReferenceProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceProducer.swift; sourceTree = "<group>"; };
+		50DF07231DCF1B3F00FF034E /* BasicReferenceProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicReferenceProducer.swift; sourceTree = "<group>"; };
+		50DF07251DCF1B8500FF034E /* NullReferenceProducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullReferenceProducer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 				507E4A881DCA1E9F00B95FD1 /* Expression */,
 				5034D4A51DCB098F00666762 /* Function */,
 				50DF071F1DCED27100FF034E /* Parser */,
+				50DF07201DCF1AC800FF034E /* Reference */,
 				507E4A891DCA1E9F00B95FD1 /* Value */,
 				507E4A951DCA2C0700B95FD1 /* EvaluateContext.swift */,
 				507E4A861DCA1E3500B95FD1 /* Formulitic.swift */,
@@ -160,7 +165,6 @@
 				507E4A971DCA36F600B95FD1 /* DoubleValue.swift */,
 				507E4A921DCA2B2200B95FD1 /* EmptyValue.swift */,
 				507E4A901DCA291000B95FD1 /* ErrorValue.swift */,
-				507E4A9D1DCA37EC00B95FD1 /* ReferenceValue.swift */,
 				507E4A9B1DCA37A900B95FD1 /* StringValue.swift */,
 			);
 			path = Value;
@@ -172,6 +176,16 @@
 				50A054121DCAC68500D4F7D9 /* FormulaParser.swift */,
 			);
 			path = Parser;
+			sourceTree = "<group>";
+		};
+		50DF07201DCF1AC800FF034E /* Reference */ = {
+			isa = PBXGroup;
+			children = (
+				50DF07211DCF1AF700FF034E /* ReferenceProducer.swift */,
+				50DF07231DCF1B3F00FF034E /* BasicReferenceProducer.swift */,
+				50DF07251DCF1B8500FF034E /* NullReferenceProducer.swift */,
+			);
+			path = Reference;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,13 +301,15 @@
 			files = (
 				50A054131DCAC68500D4F7D9 /* FormulaParser.swift in Sources */,
 				507E4A871DCA1E3500B95FD1 /* Formulitic.swift in Sources */,
-				507E4A9E1DCA37EC00B95FD1 /* ReferenceValue.swift in Sources */,
 				5034D4A91DCB20F300666762 /* OperatorFunctions.swift in Sources */,
 				507E4A961DCA2C0700B95FD1 /* EvaluateContext.swift in Sources */,
 				507E4A9A1DCA373400B95FD1 /* BoolValue.swift in Sources */,
+				50DF07241DCF1B3F00FF034E /* BasicReferenceProducer.swift in Sources */,
+				50DF07221DCF1AF700FF034E /* ReferenceProducer.swift in Sources */,
 				507E4A9C1DCA37A900B95FD1 /* StringValue.swift in Sources */,
 				507E4A8D1DCA1F4E00B95FD1 /* Expression.swift in Sources */,
 				507E4A981DCA36F600B95FD1 /* DoubleValue.swift in Sources */,
+				50DF07261DCF1B8500FF034E /* NullReferenceProducer.swift in Sources */,
 				507E4A931DCA2B2200B95FD1 /* EmptyValue.swift in Sources */,
 				50A0540E1DCABADD00D4F7D9 /* FunctionExpression.swift in Sources */,
 				50A0540C1DCAB9BC00D4F7D9 /* ValueExpression.swift in Sources */,

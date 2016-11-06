@@ -27,13 +27,12 @@ import Foundation
 
 public class Formulitic {
     private var functions: [String: Function]
-    public var dereferencer: (_ name: String, _ context: EvaluateContext) -> Value
+    public var referenceProducer: ReferenceProducer
     
     public init() {
         functions = [:]
-        dereferencer = { (name, context) in
-            return ErrorValue.invalidReference
-        }
+        referenceProducer = NullReferenceProducer()
+        
         installFunctions(Functions.Operator)
     }
     
@@ -44,15 +43,12 @@ public class Formulitic {
     }
     
     public func parse(_ formulaString: String) -> Formula {
-        return FormulaParser.parse(formulaString: formulaString, with: self)
+        return FormulaParser(formulitic: self, formulaString: formulaString)
+            .parseFormula()
     }
     
     func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
         guard let function = functions[name] else { return ErrorValue.unknownFunction }
-        return function(self, parameters, context)
-    }
-    
-    func dereference(name: String, context: EvaluateContext) -> Value {
-        return dereferencer(name, context)
+        return function(parameters, context)
     }
 }

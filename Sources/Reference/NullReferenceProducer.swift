@@ -1,5 +1,5 @@
 //
-// Formula.swift
+// NullReferenceProducer.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,23 +25,22 @@
 
 import Foundation
 
-public class Formula {
-    private let formulitic: Formulitic
-    private let expression: Expression
+public class NullReferenceProducer: ReferenceProducer {
+    public func reference(for name: String) -> Referable & Value {
+        return NullReferenceValue.shared
+    }
+}
+
+public class NullReferenceValue: Value, Referable {
+    public static let shared = NullReferenceValue()
     
-    init(formulitic: Formulitic, expression: Expression) {
-        self.formulitic = formulitic
-        self.expression = expression
+    private init() { }
+    
+    public func dereference(with context: EvaluateContext) -> Value {
+        return ErrorValue.invalidReference
     }
     
-    public func evaluate(with context: EvaluateContext) -> Value {
-        let value = expression.evaluate(with: context)
-        if value is Errorable {
-            return value
-        } else if let referableValue = value as? Referable {
-            return referableValue.dereference(with: context)
-        } else {
-            return value
-        }
+    public func forEachReference(_ body: (_ refValue: Value & Referable) -> Void) {
+        body(self)
     }
 }

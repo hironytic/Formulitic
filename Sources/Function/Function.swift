@@ -25,7 +25,7 @@
 
 import Foundation
 
-public typealias Function = (_ formulitic: Formulitic, _ parameters: [Expression], _ context: EvaluateContext) -> Value
+public typealias Function = (_ parameters: [Expression], _ context: EvaluateContext) -> Value
 
 public struct FuncName {
     private init() {}
