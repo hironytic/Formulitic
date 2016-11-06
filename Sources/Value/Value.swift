@@ -73,7 +73,7 @@ public protocol Stringable {
 /// A capability of boolean values.
 public protocol Booleanable {
     /// Returns a holding boolean value.
-    var isTrue: Bool { get }
+    var bool: Bool { get }
 }
 
 /// A capability of reference values.

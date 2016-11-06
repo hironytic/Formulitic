@@ -44,7 +44,7 @@ public struct DoubleValue: Value, Numerable, Hashable {
         case .stringable:
             return StringValue(string: "\(number)")
         case .booleanable:
-            return BoolValue(isTrue: !number.isZero)
+            return BoolValue(bool: !number.isZero)
         }
     }
     

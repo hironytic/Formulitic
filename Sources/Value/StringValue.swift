@@ -50,7 +50,7 @@ public struct StringValue: Value, Stringable, Hashable {
                 return ErrorValue.invalidValue
             }
         case .booleanable:
-            return BoolValue(isTrue: false)
+            return BoolValue(bool: false)
         }
     }
     

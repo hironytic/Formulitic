@@ -28,13 +28,13 @@ import Foundation
 /// A calculated value which represents a boolean value.
 public struct BoolValue: Value, Booleanable, Hashable {
     /// A raw value.
-    public let isTrue: Bool
+    public let bool: Bool
 
     /// Initializes the object.
     /// - Parameters:
-    ///     - isTrue: A raw value.
-    public init(isTrue: Bool) {
-        self.isTrue = isTrue
+    ///     - bool: A raw value.
+    public init(bool: Bool) {
+        self.bool = bool
     }
     
     public func cast(to capability: ValueCapability, context: EvaluateContext) -> Value {
@@ -42,9 +42,9 @@ public struct BoolValue: Value, Booleanable, Hashable {
         case .booleanable:
             return self
         case .numerable:
-            return DoubleValue(number: isTrue ? 1.0 : 0.0)
+            return DoubleValue(number: bool ? 1.0 : 0.0)
         case .stringable:
-            return StringValue(string: isTrue ? "1" : "0")
+            return StringValue(string: bool ? "1" : "0")
         }
     }
     
@@ -57,7 +57,7 @@ public struct BoolValue: Value, Booleanable, Hashable {
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
     public static func ==(lhs: BoolValue, rhs: BoolValue) -> Bool {
-        return lhs.isTrue == rhs.isTrue
+        return lhs.bool == rhs.bool
     }
     
     /// The hash value.
@@ -66,13 +66,13 @@ public struct BoolValue: Value, Booleanable, Hashable {
     /// your program. Do not save hash values to use during a future execution.
     public var hashValue: Int {
         get {
-            return isTrue.hashValue
+            return bool.hashValue
         }
     }
 }
 
 extension BoolValue: CustomDebugStringConvertible {
     public var debugDescription: String {
-        return "BoolValue(\(isTrue))"
+        return "BoolValue(\(bool))"
     }
 }

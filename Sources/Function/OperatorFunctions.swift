@@ -224,8 +224,8 @@ fileprivate func compareStringable(_ value1: Stringable, _ value2: Stringable) -
 }
 
 fileprivate func compareBooleanable(_ value1: Booleanable, _ value2: Booleanable) -> Int {
-    let order1 = value1.isTrue ? 1 : 0
-    let order2 = value2.isTrue ? 1 : 0
+    let order1 = value1.bool ? 1 : 0
+    let order2 = value2.bool ? 1 : 0
     return order1 - order2
 }
 
@@ -271,7 +271,7 @@ fileprivate func comparisonOperator(matcher: @escaping (Int) -> Bool) -> Functio
             }
         }
 
-        return BoolValue(isTrue: matcher(result))
+        return BoolValue(bool: matcher(result))
     }))
 }
 

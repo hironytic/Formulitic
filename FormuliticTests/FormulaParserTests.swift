@@ -126,13 +126,13 @@ class FormulaParserTests: XCTestCase {
         formulitic.installFunctions([
             "TRUE": { (parameters, context) -> Value in
                 guard parameters.count == 0 else { return ErrorValue.invalidArgumentCount }
-                return BoolValue(isTrue: true)
+                return BoolValue(bool: true)
             }
             ])
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         if let booleanableResult = result as? Booleanable {
-            XCTAssertEqual(booleanableResult.isTrue, true)
+            XCTAssertEqual(booleanableResult.bool, true)
         } else {
             XCTFail("the result should be a boolean")
         }

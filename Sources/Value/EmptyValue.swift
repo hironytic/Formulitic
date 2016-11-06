@@ -38,7 +38,7 @@ public struct EmptyValue: Value, Hashable {
         case .stringable:
             return StringValue(string: "")
         case .booleanable:
-            return BoolValue(isTrue: false)
+            return BoolValue(bool: false)
         }
     }
 
