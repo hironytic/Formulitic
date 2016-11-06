@@ -73,7 +73,7 @@ public class FormulaParser {
     private lazy var stringTokenRegularExpression = try! NSRegularExpression(pattern: "\"([^\"]|\"\")*\"", options: [])
     private lazy var identifierTokenRegularExpression = try! NSRegularExpression(pattern: "[A-Za-z_][A-Za-z_0-9]*", options: [])
 
-    public static func parse(formulaString: String, with formulitic: Formulitic) -> Expression {
+    public static func parse(formulaString: String, with formulitic: Formulitic) -> Formula {
         return FormulaParser(formulitic: formulitic, formulaString: formulaString).parseFormula()
     }
     
@@ -124,16 +124,16 @@ public class FormulaParser {
         return formulaString[from ..< to]
     }
     
-    private func parseFormula() -> Expression {
+    private func parseFormula() -> Formula {
         do {
             let expression = try parseExpression()
             skipSpaces()
             if consumeCharacter() != nil {
                 throw ParseError.syntax
             }
-            return expression
+            return Formula(formulitic: formulitic, expression: expression)
         } catch {
-            return ValueExpression(formulitic: formulitic, value: ErrorValue.syntax)
+            return Formula(formulitic: formulitic, expression: ValueExpression(formulitic: formulitic, value: ErrorValue.syntax))
         }
     }
     
