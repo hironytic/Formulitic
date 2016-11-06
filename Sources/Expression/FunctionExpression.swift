@@ -25,7 +25,7 @@
 
 import Foundation
 
-public class FunctionExpression: Expression {
+class FunctionExpression: Expression {
     private let formulitic: Formulitic
     private let name: String
     private let parameters: [Expression]

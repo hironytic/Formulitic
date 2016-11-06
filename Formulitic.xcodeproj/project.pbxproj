@@ -133,9 +133,9 @@
 			children = (
 				507E4A881DCA1E9F00B95FD1 /* Expression */,
 				5034D4A51DCB098F00666762 /* Function */,
+				50DF071F1DCED27100FF034E /* Parser */,
 				507E4A891DCA1E9F00B95FD1 /* Value */,
 				507E4A951DCA2C0700B95FD1 /* EvaluateContext.swift */,
-				50A054121DCAC68500D4F7D9 /* FormulaParser.swift */,
 				507E4A861DCA1E3500B95FD1 /* Formulitic.swift */,
 				50DF071D1DCECAA800FF034E /* Formula.swift */,
 			);
@@ -164,6 +164,14 @@
 				507E4A9B1DCA37A900B95FD1 /* StringValue.swift */,
 			);
 			path = Value;
+			sourceTree = "<group>";
+		};
+		50DF071F1DCED27100FF034E /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				50A054121DCAC68500D4F7D9 /* FormulaParser.swift */,
+			);
+			path = Parser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

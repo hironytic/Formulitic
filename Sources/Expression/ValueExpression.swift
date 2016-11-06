@@ -25,7 +25,7 @@
 
 import Foundation
 
-public class ValueExpression: Expression {
+class ValueExpression: Expression {
     private let value: Value
     
     public init(formulitic: Formulitic, value: Value) {

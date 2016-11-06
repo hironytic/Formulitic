@@ -29,7 +29,7 @@ public class Formula {
     private let formulitic: Formulitic
     private let expression: Expression
     
-    public init(formulitic: Formulitic, expression: Expression) {
+    init(formulitic: Formulitic, expression: Expression) {
         self.formulitic = formulitic
         self.expression = expression
     }

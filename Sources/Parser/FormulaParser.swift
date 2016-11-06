@@ -61,7 +61,7 @@ import Foundation
 //      <IDENTIFIER> ::= (['A'-'Z','a'-'z','_']) (['A'-'Z','a'-'z','_','0'-'9'])*
 
 
-public class FormulaParser {
+class FormulaParser {
     private enum ParseError: Error {
         case syntax
     }

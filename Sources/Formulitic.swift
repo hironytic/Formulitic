@@ -43,6 +43,10 @@ public class Formulitic {
         }
     }
     
+    public func parse(_ formulaString: String) -> Formula {
+        return FormulaParser.parse(formulaString: formulaString, with: self)
+    }
+    
     func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
         guard let function = functions[name] else { return ErrorValue.unknownFunction }
         return function(self, parameters, context)
