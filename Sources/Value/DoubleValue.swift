@@ -25,9 +25,14 @@
 
 import Foundation
 
+/// A calculated value which represents a double number
 public struct DoubleValue: Value, Numerable, Hashable {
+    /// A raw number.
     public let number: Double
     
+    /// Initializes the object.
+    /// - Parameters:
+    ///     - number: A raw number.
     public init(number: Double) {
         self.number = number
     }
@@ -40,8 +45,6 @@ public struct DoubleValue: Value, Numerable, Hashable {
             return StringValue(string: "\(number)")
         case .booleanable:
             return BoolValue(isTrue: !number.isZero)
-        default:
-            return ErrorValue.invalidValue
         }
     }
     

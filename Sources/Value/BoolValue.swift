@@ -25,9 +25,14 @@
 
 import Foundation
 
+/// A calculated value which represents a boolean value.
 public struct BoolValue: Value, Booleanable, Hashable {
+    /// A raw value.
     public let isTrue: Bool
-    
+
+    /// Initializes the object.
+    /// - Parameters:
+    ///     - isTrue: A raw value.
     public init(isTrue: Bool) {
         self.isTrue = isTrue
     }
@@ -40,8 +45,6 @@ public struct BoolValue: Value, Booleanable, Hashable {
             return DoubleValue(number: isTrue ? 1.0 : 0.0)
         case .stringable:
             return StringValue(string: isTrue ? "1" : "0")
-        default:
-            return ErrorValue.invalidValue
         }
     }
     

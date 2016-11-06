@@ -25,6 +25,7 @@
 
 import Foundation
 
+/// A calculated value which represents "empty".
 public struct EmptyValue: Value, Hashable {
     public static let shared = EmptyValue()
     
@@ -38,8 +39,6 @@ public struct EmptyValue: Value, Hashable {
             return StringValue(string: "")
         case .booleanable:
             return BoolValue(isTrue: false)
-        default:
-            return ErrorValue.invalidValue
         }
     }
 

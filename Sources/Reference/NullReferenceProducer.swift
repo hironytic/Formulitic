@@ -25,13 +25,19 @@
 
 import Foundation
 
+/// A reference producer which doesn't manages any reference.
+///
+/// This is a default reference producer of `Formulitic`.
+/// You should replace this by another reference producer if you want to use references in formulae.
 public class NullReferenceProducer: ReferenceProducer {
     public func reference(for name: String) -> Referable & Value {
         return NullReferenceValue.shared
     }
 }
 
+/// A reference value used with `NullReferenceProducer`.
 public class NullReferenceValue: Value, Referable {
+    /// A shared value.
     public static let shared = NullReferenceValue()
     
     private init() { }

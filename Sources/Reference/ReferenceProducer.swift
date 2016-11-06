@@ -25,6 +25,11 @@
 
 import Foundation
 
+/// A protocol to which a reference producer should conform.
 public protocol ReferenceProducer {
+    /// Returns a reference value for specified name.
+    /// - Parameters:
+    ///     - name: A name of the reference.
+    /// - Returns: A reference value.
     func reference(for name: String) -> Value & Referable
 }

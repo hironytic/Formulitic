@@ -25,14 +25,36 @@
 
 import Foundation
 
+/// A built-in calculated values which represent errors.
 public enum ErrorValue: Value, Errorable, Hashable {
+    /// Generic error.
     case generic
+    
+    /// Syntax error.
     case syntax
+    
+    /// The value is invalid.
     case invalidValue
+    
+    /// Unknown function name.
     case unknownFunction
+    
+    /// The number of arguments passed to the function is wrong.
     case invalidArgumentCount
+    
+    /// A circular reference is detected.
+    ///
+    /// Because Formulitic library doesn't provide any dereferencing feature,
+    /// this error value is not created by it.
+    /// But you can return this value in your custom `BasicDereferencer`
+    /// or in `dereference(with:)` method of the reference values which managed
+    /// by your custom `ReferenceProducer`.
     case circularReference
+
+    /// The reference is invalid.
     case invalidReference
+    
+    /// Calculated value is NaN (Not a Number).
     case nan
     
     public func cast(to capability: ValueCapability, context: EvaluateContext) -> Value {

@@ -25,10 +25,17 @@
 
 import Foundation
 
+/// A protocol which represents a context of evaluation.
+///
+/// This protocol defines no conformances.
+///
+/// You can derive this protocol and then pass your custom context object
+/// throuch `Formula.evaluate(with:)` if you want to do so.
 public protocol EvaluateContext {
     
 }
 
+/// A default evaluate context.
 public class DefaultEvaluateContext: EvaluateContext {
     public init() { }
 }

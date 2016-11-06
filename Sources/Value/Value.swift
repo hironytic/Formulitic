@@ -25,8 +25,13 @@
 
 import Foundation
 
-/// A value which appears in evaluating a formula.
+/// A calculated value which appears in evaluating a formula.
 public protocol Value {
+    /// Converts this value to another value which has specified capability.
+    /// - Parameters:
+    ///     - capability: A capability of the value that you want.
+    ///     - context: An `EvaluateContext` object.
+    /// - Returns: A converted value, or an error value.
     func cast(to capability: ValueCapability, context: EvaluateContext) -> Value
 }
 
@@ -36,11 +41,15 @@ public extension Value {
     }
 }
 
-/// A type of some value's capability.
+/// A type of a capability of value.
 public enum ValueCapability {
-    case errorable
+    /// A type of capability that the value conforms to `Numerable`.
     case numerable
+    
+    /// A type of capability that the value conforms to `Stringable`.
     case stringable
+    
+    /// A type of capability that the value conforms to `Booleanable`.
     case booleanable
 }
 
@@ -70,7 +79,8 @@ public protocol Booleanable {
 /// A capability of reference values.
 public protocol Referable {    
     /// Retrieves an actual value.
-    /// - Parameter context: An EvaluateContext object
+    /// - Parameters:
+    ///     - context: An `EvaluateContext` object
     /// - Returns: Actual value
     func dereference(with context: EvaluateContext) -> Value
 
@@ -79,7 +89,8 @@ public protocol Referable {
     /// If this object refers to multiple value, the closure is called multiple times.
     /// If this object refers to only one value, the closure is called only once and the `refValue` parameter passed to it can be this object.
     ///
-    /// - Parameter body: A closure called on each reference
-    /// - Parameter refValue: Each reference
+    /// - Parameters:
+    ///     - body: A closure called on each reference
+    ///     - refValue: Each reference
     func forEachReference(_ body: (_ refValue: Value & Referable) -> Void)
 }

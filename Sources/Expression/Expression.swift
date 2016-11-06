@@ -26,6 +26,13 @@
 import Foundation
 
 /// An expression in a formula
+///
+/// An `Expression` is a part of the parse tree.
+/// You can get a calculated value by calling `evaluate(with:)`.
 public protocol Expression {
+    /// Evaluates this expression.
+    /// - Parameters:
+    ///     - context: An `EvaluateContext` object.
+    /// - Returns: A caluculated value.
     func evaluate(with context: EvaluateContext) -> Value
 }

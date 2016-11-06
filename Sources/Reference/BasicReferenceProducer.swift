@@ -25,8 +25,19 @@
 
 import Foundation
 
+/// A function that dereferences a value.
+/// - Parameters:
+///     - name: A name of the reference.
+///     - context: An `EvaluateContext` object.
+public typealias BasicDereferencer = (_ name: String, _ context: EvaluateContext) -> Value
+
+/// A reference producer which is simply manages references by their names.
+///
+/// In dereferencing a reference, this object delegates it to `dereferencer`.
+/// You should set a function to it to dereference values.
 public class BasicReferenceProducer: ReferenceProducer {
-    public var dereferencer: (_ name: String, _ context: EvaluateContext) -> Value
+    /// A delegated function to dereference values.
+    public var dereferencer: BasicDereferencer
     
     public init() {
         dereferencer = { (name, context) in
@@ -38,15 +49,24 @@ public class BasicReferenceProducer: ReferenceProducer {
         return BasicReferenceValue(producer: self, name: name)
     }
     
+    /// Dereferences a reference.
+    /// - Parameters:
+    ///     - reference: A reference.
+    ///     - context: An `EvaluateContext` object.
     public func dereference(_ reference: BasicReferenceValue, with context: EvaluateContext) -> Value {
         return dereferencer(reference.name, context)
     }
 }
 
+/// A reference value used with `BasicReferenceProducer`.
 public class BasicReferenceValue: Value, Referable {
     private let producer: BasicReferenceProducer
     let name: String
-    
+
+    /// Initializes the object.
+    /// - Parameters:
+    ///     - producer: A `BasicReferenceProducer` object which manages this object.
+    ///     - name: A name of the reference.
     public init(producer: BasicReferenceProducer, name: String) {
         self.producer = producer
         self.name = name
@@ -58,5 +78,11 @@ public class BasicReferenceValue: Value, Referable {
     
     public func forEachReference(_ body: (_ refValue: Value & Referable) -> Void) {
         body(self)
+    }
+}
+
+extension BasicReferenceValue: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "BasicReferenceValue(\"\(name)\")"
     }
 }

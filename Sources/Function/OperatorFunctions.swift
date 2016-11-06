@@ -26,30 +26,64 @@
 import Foundation
 
 public extension FuncName {
+    /// Names of operator functions.
+    ///
+    /// These functions are internally used to evaluate operator values.
     public struct Operator {
         private init() {}
         
+        /// `==` operator.
         public static let equalTo = "=="
+        
+        /// `!=` or `<>` opeator.
         public static let notEqualTo = "!="
+        
+        /// `<` operator.
         public static let lessThan = "<"
+        
+        /// `<=` operator.
         public static let lessThanOrEqualTo = "<="
+        
+        /// `>` operator.
         public static let greaterThan = ">"
+        
+        /// `>=` operator.
         public static let greaterThanOrEqualTo = ">="
         
+        
+        /// `&` operator.
+        public static let concatenate = "&"
+        
+
+        /// `+` (binary) operator.
         public static let add = "+"
+        
+        /// `-` (binary) operator
         public static let subtract = "-"
+        
+        /// `*` operator
         public static let multiply = "*"
+        
+        /// `/` operator
         public static let divide = "/"
         
-        public static let unaryPlus = "+()"
-        public static let unaryNegate = "-()"
         
-        public static let concatenate = "&"
+        /// `^` operator.
         public static let power = "^"
+
+        
+        /// `+` (unary) operator.
+        public static let unaryPlus = "+()"
+        
+        /// `-` (unary) operator.
+        public static let unaryNegate = "-()"
     }
 }
 
 public extension Functions {
+    /// Operator functions.
+    ///
+    /// These functions are internally used to evaluate operator values.
     public static let Operator: [String: Function] = [
         FuncName.Operator.equalTo: equalTo,
         FuncName.Operator.notEqualTo: notEqualTo,
@@ -58,16 +92,17 @@ public extension Functions {
         FuncName.Operator.greaterThan: greaterThan,
         FuncName.Operator.greaterThanOrEqualTo: greaterThanOrEqualTo,
         
+        FuncName.Operator.concatenate: concatenate,
+
         FuncName.Operator.add: add,
         FuncName.Operator.subtract: subtract,
         FuncName.Operator.multiply: multiply,
         FuncName.Operator.divide: divide,
         
+        FuncName.Operator.power: power,
+        
         FuncName.Operator.unaryPlus: unaryPlus,
         FuncName.Operator.unaryNegate: unaryNegate,
-        
-        FuncName.Operator.concatenate: concatenate,
-        FuncName.Operator.power: power,
     ]
 }
 

@@ -25,6 +25,10 @@
 
 import Foundation
 
+/// A object which represents a formula.
+///
+/// A `Formula` is a parse tree. 
+/// You can get a calculated value by calling `evaluate(with:)`.
 public class Formula {
     private let formulitic: Formulitic
     private let expression: Expression
@@ -34,6 +38,10 @@ public class Formula {
         self.expression = expression
     }
     
+    /// Evaluates this expression.
+    /// - Parameters:
+    ///     - context: An `EvaluateContext` object.
+    /// - Returns: A caluculated value.
     public func evaluate(with context: EvaluateContext = DefaultEvaluateContext()) -> Value {
         let value = expression.evaluate(with: context)
         if value is Errorable {

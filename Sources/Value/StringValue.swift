@@ -25,9 +25,14 @@
 
 import Foundation
 
+/// A computed value which represents a string.
 public struct StringValue: Value, Stringable, Hashable {
+    /// A raw string.
     public let string: String
     
+    /// Initialized the object.
+    /// - Parameters:
+    ///     - string: A raw string.
     public init(string: String) {
         self.string = string
     }
@@ -46,8 +51,6 @@ public struct StringValue: Value, Stringable, Hashable {
             }
         case .booleanable:
             return BoolValue(isTrue: false)
-        default:
-            return ErrorValue.invalidValue
         }
     }
     

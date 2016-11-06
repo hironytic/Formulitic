@@ -25,23 +25,38 @@
 
 import Foundation
 
+/// A central object of formula parsing and evaluating it.
 public class Formulitic {
-    private var functions: [String: Function]
+    /// A reference producer.
     public let referenceProducer: ReferenceProducer
-    
+    private var functions: [String: Function]
+
+    /// Initializes the object.
+    /// - Parameters:
+    ///     - referenceProducer: A reference producer to manage references.
     public init(referenceProducer: ReferenceProducer = NullReferenceProducer()) {
         functions = [:]
         self.referenceProducer = referenceProducer
         
         installFunctions(Functions.Operator)
     }
-    
+
+    /// Installs custom functions.
+    ///
+    /// When you install functions that have the same function names of already installed functions,
+    /// it replaces them by newly installed ones.
+    /// - Parameters:
+    ///     - functions: A dictionary which has pairs of the function name and its function.
     public func installFunctions(_ functions: [String: Function]) {
         for (key, value) in functions {
-            self.functions.updateValue(value, forKey: key)
+            self.functions[key] = value
         }
     }
     
+    /// Parses a formula string.
+    /// - Parameters:
+    ///     - formulaString A formula string.
+    /// - Returns: A `Formula` object.
     public func parse(_ formulaString: String) -> Formula {
         return FormulaParser(formulitic: self, formulaString: formulaString)
             .parseFormula()
