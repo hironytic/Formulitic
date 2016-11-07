@@ -32,7 +32,7 @@ public extension FuncName {
     public struct Operator {
         private init() {}
         
-        /// `==` operator.
+        /// `=` or `==` operator.
         public static let equalTo = "=="
         
         /// `!=` or `<>` opeator.
