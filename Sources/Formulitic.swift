@@ -38,7 +38,7 @@ public class Formulitic {
         functions = [:]
         self.referenceProducer = referenceProducer
         
-        installFunctions(Functions.Operator)
+        installFunctions(Functions.operator_)
     }
 
     /// Installs custom functions.

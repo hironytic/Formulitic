@@ -84,7 +84,7 @@ public extension Functions {
     /// Operator functions.
     ///
     /// These functions are internally used to evaluate operator values.
-    public static let Operator: [String: Function] = [
+    public static let operator_: [String: Function] = [
         FuncName.Operator.equalTo: equalTo,
         FuncName.Operator.notEqualTo: notEqualTo,
         FuncName.Operator.lessThan: lessThan,

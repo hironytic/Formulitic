@@ -57,6 +57,9 @@ public enum ErrorValue: Value, Errorable, Hashable {
     /// Calculated value is NaN (Not a Number).
     case nan
     
+    /// The value is N/A.
+    case na
+    
     public func cast(to capability: ValueCapability, context: EvaluateContext) -> Value {
         return self
     }
