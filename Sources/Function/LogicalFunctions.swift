@@ -158,7 +158,7 @@ fileprivate func xor(_ parameters: [Expression], _ context: EvaluateContext) -> 
 }
 
 fileprivate func not(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
-    guard parameters.count != 1 else { return ErrorValue.invalidArgumentCount }
+    guard parameters.count == 1 else { return ErrorValue.invalidArgumentCount }
 
     var value = parameters[0].evaluate(with: context)
     if let referableValue = value as? Referable {

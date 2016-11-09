@@ -11,6 +11,7 @@
 		5034D4A91DCB20F300666762 /* OperatorFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034D4A81DCB20F300666762 /* OperatorFunctions.swift */; };
 		504639461DD0AA9A00F76D88 /* OperatorFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504639451DD0AA9A00F76D88 /* OperatorFunctionTests.swift */; };
 		504639481DD1FDA300F76D88 /* LogicalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504639471DD1FDA300F76D88 /* LogicalFunctions.swift */; };
+		5046394A1DD3404000F76D88 /* LogicalFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504639491DD3404000F76D88 /* LogicalFunctionTests.swift */; };
 		507E4A751DCA138B00B95FD1 /* Formulitic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */; };
 		507E4A7C1DCA138B00B95FD1 /* Formulitic.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E4A6E1DCA138A00B95FD1 /* Formulitic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		507E4A871DCA1E3500B95FD1 /* Formulitic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507E4A861DCA1E3500B95FD1 /* Formulitic.swift */; };
@@ -47,6 +48,7 @@
 		5034D4A81DCB20F300666762 /* OperatorFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorFunctions.swift; sourceTree = "<group>"; };
 		504639451DD0AA9A00F76D88 /* OperatorFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperatorFunctionTests.swift; sourceTree = "<group>"; };
 		504639471DD1FDA300F76D88 /* LogicalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogicalFunctions.swift; sourceTree = "<group>"; };
+		504639491DD3404000F76D88 /* LogicalFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogicalFunctionTests.swift; sourceTree = "<group>"; };
 		507E4A6B1DCA138A00B95FD1 /* Formulitic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Formulitic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		507E4A6E1DCA138A00B95FD1 /* Formulitic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Formulitic.h; sourceTree = "<group>"; };
 		507E4A6F1DCA138A00B95FD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,8 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				5034D4A61DCB09A600666762 /* Function.swift */,
-				5034D4A81DCB20F300666762 /* OperatorFunctions.swift */,
 				504639471DD1FDA300F76D88 /* LogicalFunctions.swift */,
+				5034D4A81DCB20F300666762 /* OperatorFunctions.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -111,6 +113,7 @@
 		504639441DD0AA7800F76D88 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				504639491DD3404000F76D88 /* LogicalFunctionTests.swift */,
 				504639451DD0AA9A00F76D88 /* OperatorFunctionTests.swift */,
 			);
 			path = Function;
@@ -348,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50DF072B1DCF567600FF034E /* FormulaParserTests.swift in Sources */,
+				5046394A1DD3404000F76D88 /* LogicalFunctionTests.swift in Sources */,
 				504639461DD0AA9A00F76D88 /* OperatorFunctionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
