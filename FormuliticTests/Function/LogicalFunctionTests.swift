@@ -161,6 +161,27 @@ class LogicalFunctionTests: XCTestCase {
         XCTAssertEqual((result as? Booleanable)?.bool, false)
     }
     
+    func testSwitch1() {
+        let formulaString = "SWITCH(2, 0,\"a\", 1,\"b\", 2,\"c\", 3,\"d\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? Stringable)?.string, "c")
+    }
+
+    func testSwitch2() {
+        let formulaString = "SWITCH(5, 0,\"a\", 1,\"b\", 2,\"c\", 3,\"d\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? ErrorValue), ErrorValue.na)
+    }
+    
+    func testSwitch3() {
+        let formulaString = "SWITCH(5, 0,\"a\", 1,\"b\", 2,\"c\", 3,\"d\", \"other\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? Stringable)?.string, "other")
+    }
+    
     func testTrue() {
         let formulaString = "TRUE()"
         let formula = formulitic.parse(formulaString)

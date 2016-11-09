@@ -106,7 +106,7 @@ public extension Functions {
     ]
 }
 
-fileprivate typealias BinaryEvaluator = (_ operand1: Value, _ operand2: Value, _ context: EvaluateContext) -> Value
+internal typealias BinaryEvaluator = (_ operand1: Value, _ operand2: Value, _ context: EvaluateContext) -> Value
 fileprivate typealias UnaryEvaluator = (_ operand: Value, _ context: EvaluateContext) -> Value
 
 fileprivate func binaryOperator(_ evaluator: @escaping BinaryEvaluator) -> Function {
@@ -229,8 +229,8 @@ fileprivate func compareBooleanable(_ value1: Booleanable, _ value2: Booleanable
     return order1 - order2
 }
 
-fileprivate func comparisonOperator(matcher: @escaping (Int) -> Bool) -> Function {
-    return binaryOperator(dereferencing({ (operand1, operand2, context) in
+internal func compareTwoValues(matcher: @escaping (Int) -> Bool) -> BinaryEvaluator {
+    return { (operand1, operand2, context) in
         var param1 = operand1
         var param2 = operand2
         
@@ -270,9 +270,13 @@ fileprivate func comparisonOperator(matcher: @escaping (Int) -> Bool) -> Functio
                 }
             }
         }
-
+        
         return BoolValue(bool: matcher(result))
-    }))
+    }
+}
+
+fileprivate func comparisonOperator(matcher: @escaping (Int) -> Bool) -> Function {
+    return binaryOperator(dereferencing(compareTwoValues(matcher: matcher)))
 }
 
 fileprivate let equalTo = comparisonOperator { $0 == 0 }

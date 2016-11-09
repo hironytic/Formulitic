@@ -53,6 +53,9 @@ public extension FuncName {
         
         /// OR function
         public static let or = "OR"
+
+        /// SWITCH function
+        public static let switch_ = "SWITCH"
         
         /// TRUE function
         public static let true_ = "TRUE"
@@ -73,6 +76,7 @@ public extension Functions {
         FuncName.Logical.ifna: ifna,
         FuncName.Logical.not: not,
         FuncName.Logical.or: or,
+        FuncName.Logical.switch_: switch_,
         FuncName.Logical.true_: true_,
         FuncName.Logical.xor: xor,
     ]
@@ -268,4 +272,48 @@ fileprivate func ifna(_ parameters: [Expression], _ context: EvaluateContext) ->
     }
     
     return value
+}
+
+fileprivate func switch_(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard parameters.count > 0 else { return ErrorValue.invalidArgumentCount }
+
+    var value = parameters[0].evaluate(with: context)
+    if let referableValue = value as? Referable {
+        value = referableValue.dereference(with: context)
+    }
+    
+    let equalEvaluator = compareTwoValues { $0 == 0 }
+    
+    for ix in stride(from: 1, to: parameters.count, by: 2) {
+        var caseValue = parameters[ix].evaluate(with: context)
+        if caseValue is Errorable {
+            return caseValue
+        }
+        if let referableValue = caseValue as? Referable {
+            caseValue = referableValue.dereference(with: context)
+        }
+        
+        let matchResult = equalEvaluator(value, caseValue, context)
+        if matchResult is Errorable {
+            return matchResult
+        }
+        
+        guard let booleanableValue = matchResult as? Booleanable else {
+            return ErrorValue.generic
+        }
+        
+        if (booleanableValue.bool) {
+            return parameters[ix + 1].evaluate(with: context)
+        }
+    }
+    
+    // did not match any case
+    if parameters.count % 2 == 0 {
+        // the last parameter is default value
+        return parameters[parameters.count - 1].evaluate(with: context)
+    } else {
+        return ErrorValue.na
+    }
+    
+    
 }
