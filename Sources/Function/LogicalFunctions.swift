@@ -39,6 +39,9 @@ public extension FuncName {
         /// IF function
         public static let if_ = "IF"
         
+        /// IFS function
+        public static let ifs = "IFS"
+        
         /// IFERROR function
         public static let iferror = "IFERROR"
         
@@ -65,6 +68,7 @@ public extension Functions {
         FuncName.Logical.and: and,
         FuncName.Logical.false_: false_,
         FuncName.Logical.if_: if_,
+        FuncName.Logical.ifs: ifs,
         FuncName.Logical.iferror: iferror,
         FuncName.Logical.ifna: ifna,
         FuncName.Logical.not: not,
@@ -208,6 +212,30 @@ fileprivate func if_(_ parameters: [Expression], _ context: EvaluateContext) -> 
     }
 
     return expression.evaluate(with: context)
+}
+
+fileprivate func ifs(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard parameters.count % 2 == 0 else { return ErrorValue.invalidArgumentCount }
+
+    for ix in stride(from: 0, to: parameters.count, by: 2) {
+        var value = parameters[ix].evaluate(with: context)
+        if let referableValue = value as? Referable {
+            value = referableValue.dereference(with: context)
+        }
+        value = value.cast(to: .booleanable, context: context)
+        if value is Errorable {
+            return value
+        }
+        
+        guard let booleanableValue = value as? Booleanable else {
+            return ErrorValue.generic
+        }
+        
+        if (booleanableValue.bool) {
+            return parameters[ix + 1].evaluate(with: context)
+        }
+    }
+    return ErrorValue.na
 }
 
 fileprivate func iferror(_ parameters: [Expression], _ context: EvaluateContext) -> Value {

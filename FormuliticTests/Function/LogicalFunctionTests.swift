@@ -84,6 +84,20 @@ class LogicalFunctionTests: XCTestCase {
         XCTAssertEqual((result as? Stringable)?.string, "b")
     }
 
+    func testIfs1() {
+        let formulaString = "IFS({F}, \"a\", {T}, \"b\", {T}, \"c\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? Stringable)?.string, "b")
+    }
+
+    func testIfs2() {
+        let formulaString = "IFS({F}, \"a\", {F}, \"b\", {F}, \"c\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? ErrorValue), ErrorValue.na)
+    }
+    
     func testIfError1() {
         let formulaString = "IFERROR(\"aaa\",\"bbb\")"
         let formula = formulitic.parse(formulaString)
