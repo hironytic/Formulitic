@@ -181,7 +181,7 @@ fileprivate func not(_ parameters: [Expression], _ context: EvaluateContext) -> 
 }
 
 fileprivate func if_(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
-    guard parameters.count >= 1 && parameters.count <= 3 else { return ErrorValue.invalidArgumentCount }
+    guard 1...3 ~= parameters.count else { return ErrorValue.invalidArgumentCount }
     
     let value = parameters[0]
         .evaluate(with: context)
@@ -304,6 +304,4 @@ fileprivate func switch_(_ parameters: [Expression], _ context: EvaluateContext)
     } else {
         return ErrorValue.na
     }
-    
-    
 }
