@@ -30,7 +30,7 @@ import Foundation
 /// This is a default reference producer of `Formulitic`.
 /// You should replace this by another reference producer if you want to use references in formulae.
 public class NullReferenceProducer: ReferenceProducer {
-    public func reference(for name: String) -> Referable & Value {
+    public func reference(for name: String) -> Value & Referable {
         return NullReferenceValue.shared
     }
 }

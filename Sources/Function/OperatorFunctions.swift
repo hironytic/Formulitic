@@ -149,12 +149,12 @@ fileprivate func unaryOperator(_ evaluator: @escaping UnaryEvaluator) -> Functio
 
 fileprivate func dereferencing(_ evaluator: @escaping BinaryEvaluator) -> BinaryEvaluator {
     return { (operand1, operand2, context) in
-        let dereferenced1 = (operand1 as? Referable)?.dereference(with: context) ?? operand1
+        let dereferenced1 = operand1.dereference(with: context)
         if dereferenced1 is Errorable {
             return dereferenced1
         }
         
-        let dereferenced2 = (operand2 as? Referable)?.dereference(with: context) ?? operand2
+        let dereferenced2 = operand2.dereference(with: context)
         if dereferenced2 is Errorable {
             return dereferenced2
         }
@@ -165,7 +165,7 @@ fileprivate func dereferencing(_ evaluator: @escaping BinaryEvaluator) -> Binary
 
 fileprivate func dereferencing(_ evaluator: @escaping UnaryEvaluator) -> UnaryEvaluator {
     return { (operand, context) in
-        let dereferenced = (operand as? Referable)?.dereference(with: context) ?? operand
+        let dereferenced = operand.dereference(with: context)
         if dereferenced is Errorable {
             return dereferenced
         }

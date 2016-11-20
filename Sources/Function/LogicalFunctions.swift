@@ -96,11 +96,10 @@ fileprivate func and(_ parameters: [Expression], _ context: EvaluateContext) -> 
     guard parameters.count > 0 else { return ErrorValue.invalidArgumentCount }
     
     for param in parameters {
-        var value = param.evaluate(with: context)
-        if let referableValue = value as? Referable {
-            value = referableValue.dereference(with: context)
-        }
-        value = value.cast(to: .booleanable, context: context)
+        let value = param
+            .evaluate(with: context)
+            .dereference(with: context)
+            .cast(to: .booleanable, context: context)
         if value is Errorable {
             return value
         }
@@ -120,11 +119,10 @@ fileprivate func or(_ parameters: [Expression], _ context: EvaluateContext) -> V
     guard parameters.count > 0 else { return ErrorValue.invalidArgumentCount }
     
     for param in parameters {
-        var value = param.evaluate(with: context)
-        if let referableValue = value as? Referable {
-            value = referableValue.dereference(with: context)
-        }
-        value = value.cast(to: .booleanable, context: context)
+        let value = param
+            .evaluate(with: context)
+            .dereference(with: context)
+            .cast(to: .booleanable, context: context)
         if value is Errorable {
             return value
         }
@@ -145,11 +143,10 @@ fileprivate func xor(_ parameters: [Expression], _ context: EvaluateContext) -> 
 
     var result = false
     for param in parameters {
-        var value = param.evaluate(with: context)
-        if let referableValue = value as? Referable {
-            value = referableValue.dereference(with: context)
-        }
-        value = value.cast(to: .booleanable, context: context)
+        let value = param
+            .evaluate(with: context)
+            .dereference(with: context)
+            .cast(to: .booleanable, context: context)
         if value is Errorable {
             return value
         }
@@ -168,11 +165,10 @@ fileprivate func xor(_ parameters: [Expression], _ context: EvaluateContext) -> 
 fileprivate func not(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
     guard parameters.count == 1 else { return ErrorValue.invalidArgumentCount }
 
-    var value = parameters[0].evaluate(with: context)
-    if let referableValue = value as? Referable {
-        value = referableValue.dereference(with: context)
-    }
-    value = value.cast(to: .booleanable, context: context)
+    let value = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .booleanable, context: context)
     if value is Errorable {
         return value
     }
@@ -187,11 +183,10 @@ fileprivate func not(_ parameters: [Expression], _ context: EvaluateContext) -> 
 fileprivate func if_(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
     guard parameters.count >= 1 && parameters.count <= 3 else { return ErrorValue.invalidArgumentCount }
     
-    var value = parameters[0].evaluate(with: context)
-    if let referableValue = value as? Referable {
-        value = referableValue.dereference(with: context)
-    }
-    value = value.cast(to: .booleanable, context: context)
+    let value = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .booleanable, context: context)
     if value is Errorable {
         return value
     }
@@ -222,11 +217,10 @@ fileprivate func ifs(_ parameters: [Expression], _ context: EvaluateContext) -> 
     guard parameters.count % 2 == 0 else { return ErrorValue.invalidArgumentCount }
 
     for ix in stride(from: 0, to: parameters.count, by: 2) {
-        var value = parameters[ix].evaluate(with: context)
-        if let referableValue = value as? Referable {
-            value = referableValue.dereference(with: context)
-        }
-        value = value.cast(to: .booleanable, context: context)
+        let value = parameters[ix]
+            .evaluate(with: context)
+            .dereference(with: context)
+            .cast(to: .booleanable, context: context)
         if value is Errorable {
             return value
         }
@@ -245,10 +239,9 @@ fileprivate func ifs(_ parameters: [Expression], _ context: EvaluateContext) -> 
 fileprivate func iferror(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
     guard parameters.count == 2 else { return ErrorValue.invalidArgumentCount }
     
-    var value = parameters[0].evaluate(with: context)
-    if let referableValue = value as? Referable {
-        value = referableValue.dereference(with: context)
-    }
+    var value = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
     
     if value is Errorable {
         value = parameters[1].evaluate(with: context)
@@ -260,10 +253,9 @@ fileprivate func iferror(_ parameters: [Expression], _ context: EvaluateContext)
 fileprivate func ifna(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
     guard parameters.count == 2 else { return ErrorValue.invalidArgumentCount }
     
-    var value = parameters[0].evaluate(with: context)
-    if let referableValue = value as? Referable {
-        value = referableValue.dereference(with: context)
-    }
+    var value = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
     
     if let errorValue = value as? ErrorValue {
         if errorValue == ErrorValue.na {
@@ -277,20 +269,18 @@ fileprivate func ifna(_ parameters: [Expression], _ context: EvaluateContext) ->
 fileprivate func switch_(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
     guard parameters.count > 0 else { return ErrorValue.invalidArgumentCount }
 
-    var value = parameters[0].evaluate(with: context)
-    if let referableValue = value as? Referable {
-        value = referableValue.dereference(with: context)
-    }
+    let value = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
     
     let equalEvaluator = compareTwoValues { $0 == 0 }
     
     for ix in stride(from: 1, to: parameters.count, by: 2) {
-        var caseValue = parameters[ix].evaluate(with: context)
+        let caseValue = parameters[ix]
+            .evaluate(with: context)
+            .dereference(with: context)
         if caseValue is Errorable {
             return caseValue
-        }
-        if let referableValue = caseValue as? Referable {
-            caseValue = referableValue.dereference(with: context)
         }
         
         let matchResult = equalEvaluator(value, caseValue, context)

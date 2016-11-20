@@ -43,11 +43,11 @@ public class Formula {
     ///     - context: An `EvaluateContext` object.
     /// - Returns: A caluculated value.
     public func evaluate(with context: EvaluateContext = DefaultEvaluateContext()) -> Value {
-        let value = expression.evaluate(with: context)
+        let value = expression
+            .evaluate(with: context)
+            .dereference(with: context)
         if value is Errorable {
             return value
-        } else if let referableValue = value as? Referable {
-            return referableValue.dereference(with: context)
         } else {
             return value
         }

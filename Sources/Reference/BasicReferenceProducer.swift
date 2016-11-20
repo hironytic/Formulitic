@@ -45,7 +45,7 @@ public class BasicReferenceProducer: ReferenceProducer {
         }
     }
     
-    public func reference(for name: String) -> Referable & Value {
+    public func reference(for name: String) -> Value & Referable {
         return BasicReferenceValue(producer: self, name: name)
     }
     

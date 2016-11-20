@@ -27,6 +27,12 @@ import Foundation
 
 /// A calculated value which appears in evaluating a formula.
 public protocol Value {
+    /// Retrieves an actual value.
+    /// - Parameters:
+    ///     - context: An `EvaluateContext` object
+    /// - Returns: Actual value
+    func dereference(with context: EvaluateContext) -> Value
+    
     /// Converts this value to another value which has specified capability.
     /// - Parameters:
     ///     - capability: A capability of the value that you want.
@@ -36,6 +42,10 @@ public protocol Value {
 }
 
 public extension Value {
+    func dereference(with context: EvaluateContext) -> Value {
+        return self
+    }
+    
     func cast(to capability: ValueCapability, context: EvaluateContext) -> Value {
         return ErrorValue.invalidValue
     }
@@ -78,12 +88,6 @@ public protocol Booleanable {
 
 /// A capability of reference values.
 public protocol Referable {    
-    /// Retrieves an actual value.
-    /// - Parameters:
-    ///     - context: An `EvaluateContext` object
-    /// - Returns: Actual value
-    func dereference(with context: EvaluateContext) -> Value
-
     /// Calls the closure on each reference that this object refers to.
     ///
     /// If this object refers to multiple value, the closure is called multiple times.
