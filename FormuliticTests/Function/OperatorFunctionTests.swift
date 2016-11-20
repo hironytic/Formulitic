@@ -32,7 +32,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testEqualTo2() {
@@ -40,7 +40,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testEqualTo3() {
@@ -48,7 +48,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testEqualTo4() {
@@ -56,7 +56,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testNotEqualTo1() {
@@ -64,7 +64,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
     
     func testNotEqualTo2() {
@@ -72,7 +72,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testNotEqualTo3() {
@@ -80,7 +80,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testNotEqualTo4() {
@@ -88,7 +88,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testLessThan1() {
@@ -96,7 +96,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
     
     func testLessThan2() {
@@ -104,7 +104,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testLessThan3() {
@@ -112,7 +112,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testLessThanOrEqualTo1() {
@@ -120,7 +120,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testLessThanOrEqualTo2() {
@@ -128,7 +128,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
     
     func testLessThanOrEqualTo3() {
@@ -136,7 +136,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
     
     func testGreaterThan1() {
@@ -144,7 +144,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testGreaterThan2() {
@@ -152,7 +152,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testGreaterThan3() {
@@ -160,7 +160,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
     
     func testGreaterThenOrEqualTo1() {
@@ -168,7 +168,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testGreaterThenOrEqualTo2() {
@@ -176,7 +176,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testConcatenate() {
@@ -184,7 +184,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "xxxyyy")
+        XCTAssertEqual((result as? StringableValue)?.string, "xxxyyy")
     }
     
     func testAdd1() {
@@ -192,7 +192,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? Numerable)?.number ?? 0.0, 11.0, accuracy: 0.001)
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 11.0, accuracy: 0.001)
     }
 
     func testAdd2() {
@@ -208,7 +208,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? Numerable)?.number ?? 0.0, -9.0, accuracy: 0.001)
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, -9.0, accuracy: 0.001)
     }
     
     func testMultiply1() {
@@ -216,7 +216,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? Numerable)?.number ?? 0.0, 6.0, accuracy: 0.001)
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 6.0, accuracy: 0.001)
     }
     
     func testDivide1() {
@@ -224,7 +224,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? Numerable)?.number ?? 0.0, 2.5, accuracy: 0.001)
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 2.5, accuracy: 0.001)
     }
     
     func testPower1() {
@@ -232,7 +232,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? Numerable)?.number ?? 0.0, 1024, accuracy: 0.001)
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 1024, accuracy: 0.001)
     }
     
     func testUnaryPlus1() {
@@ -240,7 +240,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? Numerable)?.number ?? 0.0, 100, accuracy: 0.001)
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 100, accuracy: 0.001)
     }
     
     func testUnaryPlus2() {
@@ -248,7 +248,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "aaa")
+        XCTAssertEqual((result as? StringableValue)?.string, "aaa")
     }
 
     func testUnaryNegate1() {
@@ -256,7 +256,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? Numerable)?.number ?? 0.0, -200, accuracy: 0.001)
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, -200, accuracy: 0.001)
     }
 
     func testUnaryNegate2() {

@@ -26,7 +26,7 @@
 import Foundation
 
 /// A computed value which represents a string.
-public struct StringValue: Value, Stringable, Hashable {
+public struct StringValue: StringableValue, Hashable {
     /// A raw string.
     public let string: String
     

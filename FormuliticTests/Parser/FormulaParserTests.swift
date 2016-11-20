@@ -32,7 +32,7 @@ class FormulaParserTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        if let numberableResult = result as? Numerable {
+        if let numberableResult = result as? NumerableValue {
             XCTAssertEqualWithAccuracy(numberableResult.number, 11.0, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
@@ -44,7 +44,7 @@ class FormulaParserTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        if let numberableResult = result as? Numerable {
+        if let numberableResult = result as? NumerableValue {
             XCTAssertEqualWithAccuracy(numberableResult.number, 15.0, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
@@ -56,7 +56,7 @@ class FormulaParserTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        if let stringableResult = result as? Stringable {
+        if let stringableResult = result as? StringableValue {
             XCTAssertEqual(stringableResult.string, "abcde")
         } else {
             XCTFail("the result should be a string")
@@ -68,7 +68,7 @@ class FormulaParserTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        if let stringableResult = result as? Stringable {
+        if let stringableResult = result as? StringableValue {
             XCTAssertEqual(stringableResult.string, "This is \"cool\".")
         } else {
             XCTFail("the result should be a string")
@@ -80,7 +80,7 @@ class FormulaParserTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        if let numberableResult = result as? Numerable {
+        if let numberableResult = result as? NumerableValue {
             XCTAssertEqualWithAccuracy(numberableResult.number, -23.5, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
@@ -105,15 +105,15 @@ class FormulaParserTests: XCTestCase {
         formulitic.installFunctions([
             "MAX": { (parameters, context) -> Value in
                 guard parameters.count == 2 else { return ErrorValue.invalidArgumentCount }
-                let value1OrNil = (parameters[0].evaluate(with: context).cast(to: .numerable, context: context) as? Numerable)?.number
-                let value2OrNil = (parameters[1].evaluate(with: context).cast(to: .numerable, context: context) as? Numerable)?.number
+                let value1OrNil = (parameters[0].evaluate(with: context).cast(to: .numerable, context: context) as? NumerableValue)?.number
+                let value2OrNil = (parameters[1].evaluate(with: context).cast(to: .numerable, context: context) as? NumerableValue)?.number
                 guard let value1 = value1OrNil, let value2 = value2OrNil else { return ErrorValue.invalidValue }
                 return DoubleValue(number: max(value1, value2))
             }
         ])
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        if let numberableResult = result as? Numerable {
+        if let numberableResult = result as? NumerableValue {
             XCTAssertEqualWithAccuracy(numberableResult.number, 2.0, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
@@ -131,7 +131,7 @@ class FormulaParserTests: XCTestCase {
             ])
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        if let booleanableResult = result as? Booleanable {
+        if let booleanableResult = result as? BooleanableValue {
             XCTAssertEqual(booleanableResult.bool, true)
         } else {
             XCTFail("the result should be a boolean")
@@ -154,7 +154,7 @@ class FormulaParserTests: XCTestCase {
         let formulitic = Formulitic(referenceProducer: refProducer)
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        if let numberableResult = result as? Numerable {
+        if let numberableResult = result as? NumerableValue {
             XCTAssertEqualWithAccuracy(numberableResult.number, 50.0, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")

@@ -26,7 +26,7 @@
 import Foundation
 
 /// A built-in calculated values which represent errors.
-public enum ErrorValue: Value, Errorable, Hashable {
+public enum ErrorValue: ErrorableValue, Hashable {
     /// Generic error.
     case generic
     

@@ -53,42 +53,42 @@ class LogicalFunctionTests: XCTestCase {
         let formulaString = "AND({T},{F},{T},{F})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testAnd2() {
         let formulaString = "AND({T},{T})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
     
     func testFalse() {
         let formulaString = "FALSE()"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testIfThen() {
         let formulaString = "IF({T},\"a\",\"b\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "a")
+        XCTAssertEqual((result as? StringableValue)?.string, "a")
     }
 
     func testIfElse() {
         let formulaString = "IF({F},\"a\",\"b\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "b")
+        XCTAssertEqual((result as? StringableValue)?.string, "b")
     }
 
     func testIfs1() {
         let formulaString = "IFS({F}, \"a\", {T}, \"b\", {T}, \"c\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "b")
+        XCTAssertEqual((result as? StringableValue)?.string, "b")
     }
 
     func testIfs2() {
@@ -102,21 +102,21 @@ class LogicalFunctionTests: XCTestCase {
         let formulaString = "IFERROR(\"aaa\",\"bbb\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "aaa")
+        XCTAssertEqual((result as? StringableValue)?.string, "aaa")
     }
 
     func testIfError2() {
         let formulaString = "IFERROR({UNKNOWN},\"bbb\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "bbb")
+        XCTAssertEqual((result as? StringableValue)?.string, "bbb")
     }
     
     func testIfNa1() {
         let formulaString = "IFNA(\"aaa\",\"bbb\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "aaa")
+        XCTAssertEqual((result as? StringableValue)?.string, "aaa")
     }
 
     func testIfNa2() {
@@ -130,42 +130,42 @@ class LogicalFunctionTests: XCTestCase {
         let formulaString = "IFNA({N},\"bbb\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "bbb")
+        XCTAssertEqual((result as? StringableValue)?.string, "bbb")
     }
 
     func testNot1() {
         let formulaString = "NOT({T})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testNot2() {
         let formulaString = "NOT({F})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testOr1() {
         let formulaString = "OR({T},{F},{T},{F})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
     
     func testOr2() {
         let formulaString = "OR({F},{F})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
     
     func testSwitch1() {
         let formulaString = "SWITCH(2, 0,\"a\", 1,\"b\", 2,\"c\", 3,\"d\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "c")
+        XCTAssertEqual((result as? StringableValue)?.string, "c")
     }
 
     func testSwitch2() {
@@ -179,41 +179,41 @@ class LogicalFunctionTests: XCTestCase {
         let formulaString = "SWITCH(5, 0,\"a\", 1,\"b\", 2,\"c\", 3,\"d\", \"other\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Stringable)?.string, "other")
+        XCTAssertEqual((result as? StringableValue)?.string, "other")
     }
     
     func testTrue() {
         let formulaString = "TRUE()"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testXor1() {
         let formulaString = "XOR({T},{F},{T},{F})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 
     func testXor2() {
         let formulaString = "XOR({T},{F},{T},{T})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testXor3() {
         let formulaString = "XOR({T})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, true)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, true)
     }
 
     func testXor4() {
         let formulaString = "XOR({F})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqual((result as? Booleanable)?.bool, false)
+        XCTAssertEqual((result as? BooleanableValue)?.bool, false)
     }
 }

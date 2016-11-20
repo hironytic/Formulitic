@@ -46,7 +46,7 @@ public class Formula {
         let value = expression
             .evaluate(with: context)
             .dereference(with: context)
-        if value is Errorable {
+        if value is ErrorableValue {
             return value
         } else {
             return value

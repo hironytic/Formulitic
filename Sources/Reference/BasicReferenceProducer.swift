@@ -45,7 +45,7 @@ public class BasicReferenceProducer: ReferenceProducer {
         }
     }
     
-    public func reference(for name: String) -> Value & Referable {
+    public func reference(for name: String) -> ReferableValue {
         return BasicReferenceValue(producer: self, name: name)
     }
     
@@ -59,7 +59,7 @@ public class BasicReferenceProducer: ReferenceProducer {
 }
 
 /// A reference value used with `BasicReferenceProducer`.
-public class BasicReferenceValue: Value, Referable {
+public class BasicReferenceValue: ReferableValue {
     private let producer: BasicReferenceProducer
     let name: String
 
@@ -76,7 +76,7 @@ public class BasicReferenceValue: Value, Referable {
         return producer.dereference(self, with: context)
     }
     
-    public func forEachReference(_ body: (_ refValue: Value & Referable) -> Void) {
+    public func forEachReference(_ body: (_ refValue: ReferableValue) -> Void) {
         body(self)
     }
 }

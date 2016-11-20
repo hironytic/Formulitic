@@ -100,11 +100,11 @@ fileprivate func and(_ parameters: [Expression], _ context: EvaluateContext) -> 
             .evaluate(with: context)
             .dereference(with: context)
             .cast(to: .booleanable, context: context)
-        if value is Errorable {
+        if value is ErrorableValue {
             return value
         }
         
-        guard let booleanableValue = value as? Booleanable else {
+        guard let booleanableValue = value as? BooleanableValue else {
             return ErrorValue.generic
         }
         
@@ -123,11 +123,11 @@ fileprivate func or(_ parameters: [Expression], _ context: EvaluateContext) -> V
             .evaluate(with: context)
             .dereference(with: context)
             .cast(to: .booleanable, context: context)
-        if value is Errorable {
+        if value is ErrorableValue {
             return value
         }
         
-        guard let booleanableValue = value as? Booleanable else {
+        guard let booleanableValue = value as? BooleanableValue else {
             return ErrorValue.generic
         }
         
@@ -147,11 +147,11 @@ fileprivate func xor(_ parameters: [Expression], _ context: EvaluateContext) -> 
             .evaluate(with: context)
             .dereference(with: context)
             .cast(to: .booleanable, context: context)
-        if value is Errorable {
+        if value is ErrorableValue {
             return value
         }
         
-        guard let booleanableValue = value as? Booleanable else {
+        guard let booleanableValue = value as? BooleanableValue else {
             return ErrorValue.generic
         }
         
@@ -169,11 +169,11 @@ fileprivate func not(_ parameters: [Expression], _ context: EvaluateContext) -> 
         .evaluate(with: context)
         .dereference(with: context)
         .cast(to: .booleanable, context: context)
-    if value is Errorable {
+    if value is ErrorableValue {
         return value
     }
 
-    guard let booleanableValue = value as? Booleanable else {
+    guard let booleanableValue = value as? BooleanableValue else {
         return ErrorValue.generic
     }
 
@@ -187,11 +187,11 @@ fileprivate func if_(_ parameters: [Expression], _ context: EvaluateContext) -> 
         .evaluate(with: context)
         .dereference(with: context)
         .cast(to: .booleanable, context: context)
-    if value is Errorable {
+    if value is ErrorableValue {
         return value
     }
     
-    guard let booleanableValue = value as? Booleanable else {
+    guard let booleanableValue = value as? BooleanableValue else {
         return ErrorValue.generic
     }
     
@@ -221,11 +221,11 @@ fileprivate func ifs(_ parameters: [Expression], _ context: EvaluateContext) -> 
             .evaluate(with: context)
             .dereference(with: context)
             .cast(to: .booleanable, context: context)
-        if value is Errorable {
+        if value is ErrorableValue {
             return value
         }
         
-        guard let booleanableValue = value as? Booleanable else {
+        guard let booleanableValue = value as? BooleanableValue else {
             return ErrorValue.generic
         }
         
@@ -243,7 +243,7 @@ fileprivate func iferror(_ parameters: [Expression], _ context: EvaluateContext)
         .evaluate(with: context)
         .dereference(with: context)
     
-    if value is Errorable {
+    if value is ErrorableValue {
         value = parameters[1].evaluate(with: context)
     }
     
@@ -279,16 +279,16 @@ fileprivate func switch_(_ parameters: [Expression], _ context: EvaluateContext)
         let caseValue = parameters[ix]
             .evaluate(with: context)
             .dereference(with: context)
-        if caseValue is Errorable {
+        if caseValue is ErrorableValue {
             return caseValue
         }
         
         let matchResult = equalEvaluator(value, caseValue, context)
-        if matchResult is Errorable {
+        if matchResult is ErrorableValue {
             return matchResult
         }
         
-        guard let booleanableValue = matchResult as? Booleanable else {
+        guard let booleanableValue = matchResult as? BooleanableValue else {
             return ErrorValue.generic
         }
         

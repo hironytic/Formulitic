@@ -31,5 +31,5 @@ public protocol ReferenceProducer {
     /// - Parameters:
     ///     - name: A name of the reference.
     /// - Returns: A reference value.
-    func reference(for name: String) -> Value & Referable
+    func reference(for name: String) -> ReferableValue
 }

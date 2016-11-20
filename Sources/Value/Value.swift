@@ -53,41 +53,41 @@ public extension Value {
 
 /// A type of a capability of value.
 public enum ValueCapability {
-    /// A type of capability that the value conforms to `Numerable`.
+    /// A type of capability that the value conforms to `NumerableValue`.
     case numerable
     
-    /// A type of capability that the value conforms to `Stringable`.
+    /// A type of capability that the value conforms to `StringableValue`.
     case stringable
     
-    /// A type of capability that the value conforms to `Booleanable`.
+    /// A type of capability that the value conforms to `BooleanableValue`.
     case booleanable
 }
 
-/// A capability of error values.
-public protocol Errorable {
+/// An error values.
+public protocol ErrorableValue: Value {
     
 }
 
-/// A capability of numeric values.
-public protocol Numerable {
+/// A numeric value.
+public protocol NumerableValue: Value {
     /// Returns a holding number as a Double.
     var number: Double { get }
 }
 
-/// A capability of string values.
-public protocol Stringable {
+/// A string value.
+public protocol StringableValue: Value {
     /// Returns a holding string.
     var string: String { get }
 }
 
-/// A capability of boolean values.
-public protocol Booleanable {
+/// A boolean value.
+public protocol BooleanableValue: Value {
     /// Returns a holding boolean value.
     var bool: Bool { get }
 }
 
-/// A capability of reference values.
-public protocol Referable {    
+/// A reference value.
+public protocol ReferableValue: Value {
     /// Calls the closure on each reference that this object refers to.
     ///
     /// If this object refers to multiple value, the closure is called multiple times.
@@ -96,5 +96,5 @@ public protocol Referable {
     /// - Parameters:
     ///     - body: A closure called on each reference
     ///     - refValue: Each reference
-    func forEachReference(_ body: (_ refValue: Value & Referable) -> Void)
+    func forEachReference(_ body: (_ refValue: ReferableValue) -> Void)
 }

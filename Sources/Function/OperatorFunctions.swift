@@ -117,13 +117,13 @@ fileprivate func binaryOperator(_ evaluator: @escaping BinaryEvaluator) -> Funct
         
         let expression1 = parameters[0]
         let operand1 = expression1.evaluate(with: context)
-        if operand1 is Errorable {
+        if operand1 is ErrorableValue {
             return operand1
         }
         
         let expression2 = parameters[1]
         let operand2 = expression2.evaluate(with: context)
-        if operand2 is Errorable {
+        if operand2 is ErrorableValue {
             return operand2
         }
         
@@ -139,7 +139,7 @@ fileprivate func unaryOperator(_ evaluator: @escaping UnaryEvaluator) -> Functio
         
         let expression1 = parameters[0]
         let operand1 = expression1.evaluate(with: context)
-        if operand1 is Errorable {
+        if operand1 is ErrorableValue {
             return operand1
         }
         
@@ -150,12 +150,12 @@ fileprivate func unaryOperator(_ evaluator: @escaping UnaryEvaluator) -> Functio
 fileprivate func dereferencing(_ evaluator: @escaping BinaryEvaluator) -> BinaryEvaluator {
     return { (operand1, operand2, context) in
         let dereferenced1 = operand1.dereference(with: context)
-        if dereferenced1 is Errorable {
+        if dereferenced1 is ErrorableValue {
             return dereferenced1
         }
         
         let dereferenced2 = operand2.dereference(with: context)
-        if dereferenced2 is Errorable {
+        if dereferenced2 is ErrorableValue {
             return dereferenced2
         }
         
@@ -166,7 +166,7 @@ fileprivate func dereferencing(_ evaluator: @escaping BinaryEvaluator) -> Binary
 fileprivate func dereferencing(_ evaluator: @escaping UnaryEvaluator) -> UnaryEvaluator {
     return { (operand, context) in
         let dereferenced = operand.dereference(with: context)
-        if dereferenced is Errorable {
+        if dereferenced is ErrorableValue {
             return dereferenced
         }
         
@@ -176,11 +176,11 @@ fileprivate func dereferencing(_ evaluator: @escaping UnaryEvaluator) -> UnaryEv
 
 fileprivate func castEmptyValue(_ emptyValue: EmptyValue, toTypeOf anotherValue: Value, context: EvaluateContext) -> Value {
     switch anotherValue {
-    case is Numerable:
+    case is NumerableValue:
         return emptyValue.cast(to: .numerable, context: context)
-    case is Stringable:
+    case is StringableValue:
         return emptyValue.cast(to: .stringable, context: context)
-    case is Booleanable:
+    case is BooleanableValue:
         return emptyValue.cast(to: .booleanable, context: context)
     default:
         return emptyValue
@@ -189,11 +189,11 @@ fileprivate func castEmptyValue(_ emptyValue: EmptyValue, toTypeOf anotherValue:
 
 fileprivate func typeOrder(of value: Value) -> Int {
     switch value {
-    case is Numerable:
+    case is NumerableValue:
         return 1
-    case is Stringable:
+    case is StringableValue:
         return 2
-    case is Booleanable:
+    case is BooleanableValue:
         return 3
     default:
         assertionFailure("unexpected value")
@@ -201,7 +201,7 @@ fileprivate func typeOrder(of value: Value) -> Int {
     }
 }
 
-fileprivate func compareNumerable(_ value1: Numerable, _ value2: Numerable) -> Int {
+fileprivate func compareNumerable(_ value1: NumerableValue, _ value2: NumerableValue) -> Int {
     let comp = value1.number - value2.number
     if comp < 0 {
         return -1
@@ -212,7 +212,7 @@ fileprivate func compareNumerable(_ value1: Numerable, _ value2: Numerable) -> I
     }
 }
 
-fileprivate func compareStringable(_ value1: Stringable, _ value2: Stringable) -> Int {
+fileprivate func compareStringable(_ value1: StringableValue, _ value2: StringableValue) -> Int {
     switch value1.string.compare(value2.string) {
     case .orderedAscending:
         return -1
@@ -223,7 +223,7 @@ fileprivate func compareStringable(_ value1: Stringable, _ value2: Stringable) -
     }
 }
 
-fileprivate func compareBooleanable(_ value1: Booleanable, _ value2: Booleanable) -> Int {
+fileprivate func compareBooleanable(_ value1: BooleanableValue, _ value2: BooleanableValue) -> Int {
     let order1 = value1.bool ? 1 : 0
     let order2 = value2.bool ? 1 : 0
     return order1 - order2
@@ -237,12 +237,12 @@ internal func compareTwoValues(matcher: @escaping (Int) -> Bool) -> BinaryEvalua
         // cast empty value as type of another value
         if let emptyParam1 = param1 as? EmptyValue {
             param1 = castEmptyValue(emptyParam1, toTypeOf: param2, context: context)
-            if param1 is Errorable {
+            if param1 is ErrorableValue {
                 return param1
             }
         } else if let emptyParam2 = param2 as? EmptyValue {
             param2 = castEmptyValue(emptyParam2, toTypeOf: param1, context: context)
-            if param2 is Errorable {
+            if param2 is ErrorableValue {
                 return param2
             }
         }
@@ -258,12 +258,12 @@ internal func compareTwoValues(matcher: @escaping (Int) -> Bool) -> BinaryEvalua
             if result == 0 {
                 // both types are same, compare values
                 switch param1 {
-                case let paramNum1 as Numerable:
-                    result = compareNumerable(paramNum1, param2 as! Numerable)
-                case let paramStr1 as Stringable:
-                    result = compareStringable(paramStr1, param2 as! Stringable)
-                case let paramBool1 as Booleanable:
-                    result = compareBooleanable(paramBool1, param2 as! Booleanable)
+                case let paramNum1 as NumerableValue:
+                    result = compareNumerable(paramNum1, param2 as! NumerableValue)
+                case let paramStr1 as StringableValue:
+                    result = compareStringable(paramStr1, param2 as! StringableValue)
+                case let paramBool1 as BooleanableValue:
+                    result = compareBooleanable(paramBool1, param2 as! BooleanableValue)
                 default:
                     assertionFailure("unexpected value")
                     break
@@ -288,17 +288,17 @@ fileprivate let greaterThanOrEqualTo = comparisonOperator { $0 >= 0 }
 
 fileprivate let add = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
-    if numerableValue1 is Errorable {
+    if numerableValue1 is ErrorableValue {
         return numerableValue1
     }
     
     let numerableValue2 = operand2.cast(to: .numerable, context: context)
-    if numerableValue2 is Errorable {
+    if numerableValue2 is ErrorableValue {
         return numerableValue2
     }
     
-    guard let numerable1 = numerableValue1 as? Numerable,
-          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    guard let numerable1 = numerableValue1 as? NumerableValue,
+          let numerable2 = numerableValue2 as? NumerableValue else { return ErrorValue.generic }
     let result = numerable1.number + numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
@@ -308,17 +308,17 @@ fileprivate let add = binaryOperator(dereferencing({ (operand1, operand2, contex
 
 fileprivate func subtractValues(_ operand1: Value, _ operand2: Value, _ context: EvaluateContext) -> Value {
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
-    if numerableValue1 is Errorable {
+    if numerableValue1 is ErrorableValue {
         return numerableValue1
     }
     
     let numerableValue2 = operand2.cast(to: .numerable, context: context)
-    if numerableValue2 is Errorable {
+    if numerableValue2 is ErrorableValue {
         return numerableValue2
     }
     
-    guard let numerable1 = numerableValue1 as? Numerable,
-        let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    guard let numerable1 = numerableValue1 as? NumerableValue,
+        let numerable2 = numerableValue2 as? NumerableValue else { return ErrorValue.generic }
     let result = numerable1.number - numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
@@ -330,17 +330,17 @@ fileprivate let subtract = binaryOperator(dereferencing(subtractValues))
 
 fileprivate let multiply = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
-    if numerableValue1 is Errorable {
+    if numerableValue1 is ErrorableValue {
         return numerableValue1
     }
     
     let numerableValue2 = operand2.cast(to: .numerable, context: context)
-    if numerableValue2 is Errorable {
+    if numerableValue2 is ErrorableValue {
         return numerableValue2
     }
     
-    guard let numerable1 = numerableValue1 as? Numerable,
-          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    guard let numerable1 = numerableValue1 as? NumerableValue,
+          let numerable2 = numerableValue2 as? NumerableValue else { return ErrorValue.generic }
     let result = numerable1.number * numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
@@ -350,17 +350,17 @@ fileprivate let multiply = binaryOperator(dereferencing({ (operand1, operand2, c
 
 fileprivate let divide = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
-    if numerableValue1 is Errorable {
+    if numerableValue1 is ErrorableValue {
         return numerableValue1
     }
     
     let numerableValue2 = operand2.cast(to: .numerable, context: context)
-    if numerableValue2 is Errorable {
+    if numerableValue2 is ErrorableValue {
         return numerableValue2
     }
     
-    guard let numerable1 = numerableValue1 as? Numerable,
-          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    guard let numerable1 = numerableValue1 as? NumerableValue,
+          let numerable2 = numerableValue2 as? NumerableValue else { return ErrorValue.generic }
     let result = numerable1.number / numerable2.number
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan
@@ -377,7 +377,7 @@ fileprivate func unaryNegate(_ parameters: [Expression], _ context: EvaluateCont
         return ErrorValue.invalidArgumentCount
     }
     let value = parameters[0].evaluate(with: context)
-    if value is Errorable {
+    if value is ErrorableValue {
         return value
     }
     return subtractValues(DoubleValue(number: 0), value, context)
@@ -385,34 +385,34 @@ fileprivate func unaryNegate(_ parameters: [Expression], _ context: EvaluateCont
 
 fileprivate let concatenate = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let stringableValue1 = operand1.cast(to: .stringable, context: context)
-    if stringableValue1 is Errorable {
+    if stringableValue1 is ErrorableValue {
         return stringableValue1
     }
     
     let stringableValue2 = operand2.cast(to: .stringable, context: context)
-    if stringableValue2 is Errorable {
+    if stringableValue2 is ErrorableValue {
         return stringableValue2
     }
     
-    guard let stringable1 = stringableValue1 as? Stringable,
-          let stringable2 = stringableValue2 as? Stringable else { return ErrorValue.generic }
+    guard let stringable1 = stringableValue1 as? StringableValue,
+          let stringable2 = stringableValue2 as? StringableValue else { return ErrorValue.generic }
     let result = stringable1.string + stringable2.string
     return StringValue(string: result)
 }))
 
 fileprivate let power = binaryOperator(dereferencing({ (operand1, operand2, context) in
     let numerableValue1 = operand1.cast(to: .numerable, context: context)
-    if numerableValue1 is Errorable {
+    if numerableValue1 is ErrorableValue {
         return numerableValue1
     }
     
     let numerableValue2 = operand2.cast(to: .numerable, context: context)
-    if numerableValue2 is Errorable {
+    if numerableValue2 is ErrorableValue {
         return numerableValue2
     }
     
-    guard let numerable1 = numerableValue1 as? Numerable,
-          let numerable2 = numerableValue2 as? Numerable else { return ErrorValue.generic }
+    guard let numerable1 = numerableValue1 as? NumerableValue,
+          let numerable2 = numerableValue2 as? NumerableValue else { return ErrorValue.generic }
     let result = pow(numerable1.number, numerable2.number)
     if result.isNaN || result.isInfinite {
         return ErrorValue.nan

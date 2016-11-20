@@ -26,7 +26,7 @@
 import Foundation
 
 /// A calculated value which represents a boolean value.
-public struct BoolValue: Value, Booleanable, Hashable {
+public struct BoolValue: BooleanableValue, Hashable {
     /// A raw value.
     public let bool: Bool
 

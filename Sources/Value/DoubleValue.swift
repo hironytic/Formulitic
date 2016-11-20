@@ -26,7 +26,7 @@
 import Foundation
 
 /// A calculated value which represents a double number
-public struct DoubleValue: Value, Numerable, Hashable {
+public struct DoubleValue: NumerableValue, Hashable {
     /// A raw number.
     public let number: Double
     
