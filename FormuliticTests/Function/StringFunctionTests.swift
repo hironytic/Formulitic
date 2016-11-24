@@ -189,4 +189,53 @@ class StringFunctionTests: XCTestCase {
         let result = formula.evaluate()
         XCTAssertEqual((result as? StringableValue)?.string, "")
     }
+    
+    func testRight1() {
+        let formulaString = "RIGHT(\"abcde\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "e")
+    }
+    
+    func testRight2() {
+        let formulaString = "RIGHT(\"abcde\", 4)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "bcde")
+    }
+    
+    func testRight3() {
+        let formulaString = "RIGHT(\"abcde\", 8)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "abcde")
+    }
+
+    func testSubstitute1() {
+        let formulaString = "SUBSTITUTE(\"aaabcaadeaaa\", \"aa\", \"XXX\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "XXXabcXXXdeXXXa")
+    }
+    
+    func testSubstitute2() {
+        let formulaString = "SUBSTITUTE(\"aaabcaadeaaa\", \"aa\", \"XXX\", 1)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "XXXabcaadeaaa")
+    }
+
+    func testSubstitute3() {
+        let formulaString = "SUBSTITUTE(\"aaabcaadeaaa\", \"aa\", \"XXX\", 3)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "aaabcaadeXXXa")
+    }
+
+    func testSubstitute4() {
+        let formulaString = "SUBSTITUTE(\"aaabcaadeaaa\", \"aa\", \"XXX\", 10)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "aaabcaadeaaa")
+    }
 }

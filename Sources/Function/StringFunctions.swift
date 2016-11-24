@@ -54,9 +54,6 @@ public extension FuncName {
         /// RIGHT function
         public static let right = "RIGHT"
         
-        /// SEARCH function
-        public static let search = "SEARCH"
-        
         /// SUBSTITUTE function
         public static let substitute = "SUBSTITUTE"
         
@@ -87,6 +84,8 @@ public extension Functions {
         FuncName.String.mid: mid,
         FuncName.String.replace: replace,
         FuncName.String.rept: rept,
+        FuncName.String.right: right,
+        FuncName.String.substitute: substitute,
     ]
 }
 
@@ -335,4 +334,101 @@ fileprivate func rept(_ parameters: [Expression], _ context: EvaluateContext) ->
     
     let result = String(repeating: text, count: count)
     return StringValue(string: result)
+}
+
+fileprivate func right(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard 1...2 ~= parameters.count else { return ErrorValue.invalidArgumentCount }
+    
+    let param0 = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .stringable, context: context)
+    if param0 is ErrorableValue {
+        return param0
+    }
+    guard let textParam = param0 as? StringableValue else { return ErrorValue.generic }
+    let text = textParam.string
+    
+    let param1 = parameters.count < 2 ? DoubleValue(number: 1.0) : parameters[1]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .numerable, context: context)
+    if param1 is ErrorableValue {
+        return param1
+    }
+    guard let countParam = param1 as? NumerableValue else { return ErrorValue.generic }
+    let count = Int(countParam.number)
+    if count > text.unicodeScalars.count {
+        return StringValue(string: text)
+    }
+    
+    let upperBound = text.unicodeScalars.endIndex
+    let lowerBound = text.unicodeScalars.index(upperBound, offsetBy: -count)
+    let result = String(text.unicodeScalars[lowerBound ..< upperBound])
+    return StringValue(string: result)
+}
+
+fileprivate func substitute(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard 3...4 ~= parameters.count else { return ErrorValue.invalidArgumentCount }
+    
+    let param0 = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .stringable, context: context)
+    guard let textParam = param0 as? StringableValue else { return ErrorValue.generic }
+    let text = textParam.string
+
+    let param1 = parameters[1]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .stringable, context: context)
+    guard let oldTextParam = param1 as? StringableValue else { return ErrorValue.generic }
+    let oldText = oldTextParam.string
+
+    let param2 = parameters[2]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .stringable, context: context)
+    guard let newTextParam = param2 as? StringableValue else { return ErrorValue.generic }
+    let newText = newTextParam.string
+    
+    if parameters.count > 3 {
+        let param3 = parameters[3]
+            .evaluate(with: context)
+            .dereference(with: context)
+            .cast(to: .numerable, context: context)
+        guard let instanceNumParam = param3 as? NumerableValue else { return ErrorValue.generic }
+        let instanceNum = Int(instanceNumParam.number)
+        guard instanceNum >= 1 else { return ErrorValue.invalidValue }
+
+        var replaceRange: Range<String.Index>? = nil
+        var beginIndex = text.startIndex
+        var foundCount = 0
+        while beginIndex < text.endIndex {
+            let range = beginIndex ..< text.endIndex
+            if let foundRange = text.range(of: oldText, range: range) {
+                foundCount += 1
+                if foundCount == instanceNum {
+                    replaceRange = foundRange
+                    break
+                } else {
+                    beginIndex = foundRange.upperBound
+                }
+            } else {
+                break
+            }
+        }
+        if let replaceRange = replaceRange {
+            var result = text
+            result.replaceSubrange(replaceRange, with: newText)
+            return StringValue(string: result)
+        } else {
+            return StringValue(string: text)
+        }
+    } else {
+        let result = text.replacingOccurrences(of: oldText, with: newText)
+        return StringValue(string: result)
+    }
+    
+    
 }
