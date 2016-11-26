@@ -39,6 +39,8 @@ class StringFunctionTests: XCTestCase {
                 return StringValue(string: "\u{E9}")
             case "eAcute2":
                 return StringValue(string: "\u{65}\u{301}")
+            case "smirk":
+                return StringValue(string: "😏")
             default:
                 return ErrorValue.invalidReference
             }
@@ -237,5 +239,96 @@ class StringFunctionTests: XCTestCase {
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         XCTAssertEqual((result as? StringableValue)?.string, "aaabcaadeaaa")
+    }
+    
+    func testT1() {
+        let formulaString = "T(\"foo\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "foo")
+    }
+
+    func testT2() {
+        let formulaString = "T(0 == 0)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "")
+    }
+
+    func testT3() {
+        let formulaString = "T(3)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "")
+    }
+    
+    func testTrim1() {
+        let formulaString = "TRIM(\"  x  y    z  \")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "x y z")
+    }
+    
+    func testUnichar1() {
+        let formulaString = "UNICHAR(65)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "A")
+    }
+
+    func testUnichar2() {
+        let formulaString = "UNICHAR(128527)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "😏")
+    }
+
+    func testUnichar3() {
+        let formulaString = "UNICHAR(0)"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? ErrorValue), ErrorValue.invalidValue)
+    }
+
+    func testUnichar4() {
+        let formulaString = "UNICHAR(55313)"    // 0xD811
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? ErrorValue), ErrorValue.na)
+    }
+
+    func testUnichar5() {
+        let formulaString = "UNICHAR(65535)"    // 0xFFFF
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? ErrorValue), ErrorValue.na)
+    }
+
+    func testUnicode1() {
+        let formulaString = "UNICODE(\"A\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 65.0, accuracy: 0.001)
+    }
+    
+    func testUnicode2() {
+        let formulaString = "UNICODE({smirk})"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 128527.0, accuracy: 0.001)
+    }
+
+    func testUnicode3() {
+        let formulaString = "UNICODE(\"\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? ErrorValue), ErrorValue.invalidValue)
+    }
+
+    func testUpper() {
+        let formulaString = "UPPER(\"trees\")"
+        let formula = formulitic.parse(formulaString)
+        let result = formula.evaluate()
+        XCTAssertEqual((result as? StringableValue)?.string, "TREES")
     }
 }

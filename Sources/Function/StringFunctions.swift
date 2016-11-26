@@ -86,6 +86,11 @@ public extension Functions {
         FuncName.String.rept: rept,
         FuncName.String.right: right,
         FuncName.String.substitute: substitute,
+        FuncName.String.t: t,
+        FuncName.String.trim: trim,
+        FuncName.String.unichar: unichar,
+        FuncName.String.unicode: unicode,
+        FuncName.String.upper: upper,
     ]
 }
 
@@ -375,6 +380,9 @@ fileprivate func substitute(_ parameters: [Expression], _ context: EvaluateConte
         .evaluate(with: context)
         .dereference(with: context)
         .cast(to: .stringable, context: context)
+    if param0 is ErrorableValue {
+        return param0
+    }
     guard let textParam = param0 as? StringableValue else { return ErrorValue.generic }
     let text = textParam.string
 
@@ -382,6 +390,9 @@ fileprivate func substitute(_ parameters: [Expression], _ context: EvaluateConte
         .evaluate(with: context)
         .dereference(with: context)
         .cast(to: .stringable, context: context)
+    if param1 is ErrorableValue {
+        return param1
+    }
     guard let oldTextParam = param1 as? StringableValue else { return ErrorValue.generic }
     let oldText = oldTextParam.string
 
@@ -389,6 +400,9 @@ fileprivate func substitute(_ parameters: [Expression], _ context: EvaluateConte
         .evaluate(with: context)
         .dereference(with: context)
         .cast(to: .stringable, context: context)
+    if param2 is ErrorableValue {
+        return param2
+    }
     guard let newTextParam = param2 as? StringableValue else { return ErrorValue.generic }
     let newText = newTextParam.string
     
@@ -397,6 +411,9 @@ fileprivate func substitute(_ parameters: [Expression], _ context: EvaluateConte
             .evaluate(with: context)
             .dereference(with: context)
             .cast(to: .numerable, context: context)
+        if param3 is ErrorableValue {
+            return param3
+        }
         guard let instanceNumParam = param3 as? NumerableValue else { return ErrorValue.generic }
         let instanceNum = Int(instanceNumParam.number)
         guard instanceNum >= 1 else { return ErrorValue.invalidValue }
@@ -429,6 +446,105 @@ fileprivate func substitute(_ parameters: [Expression], _ context: EvaluateConte
         let result = text.replacingOccurrences(of: oldText, with: newText)
         return StringValue(string: result)
     }
+}
+
+fileprivate func t(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard 1 == parameters.count else { return ErrorValue.invalidArgumentCount }
     
+    let param0 = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+    if param0 is ErrorableValue {
+        return param0
+    }
+
+    if param0 is StringableValue {
+        return param0
+    } else {
+        return StringValue(string: "")
+    }
+}
+
+fileprivate func trim(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard 1 == parameters.count else { return ErrorValue.invalidArgumentCount }
     
+    let param0 = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .stringable, context: context)
+    if param0 is ErrorableValue {
+        return param0
+    }
+    guard let textParam = param0 as? StringableValue else { return ErrorValue.generic }
+    let text = textParam.string
+
+    let result = text
+        .trimmingCharacters(in: [" "])
+        .replacingOccurrences(of: "[\\u0020]+", with: " ", options: .regularExpression)
+    return StringValue(string: result)
+}
+
+fileprivate func unichar(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard 1 == parameters.count else { return ErrorValue.invalidArgumentCount }
+
+    let param0 = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .numerable, context: context)
+    if param0 is ErrorableValue {
+        return param0
+    }
+    guard let numberParam = param0 as? NumerableValue else { return ErrorValue.generic }
+    let number = Int(numberParam.number)
+
+    guard number > 0 else { return ErrorValue.invalidValue }
+    
+    switch number {
+    case 0xd800 ... 0xdfff, 0xfffe, 0xffff:
+        return ErrorValue.na
+    default:
+        if let us = UnicodeScalar(number) {
+            return StringValue(string: String(Character(us)))
+        } else {
+            return ErrorValue.invalidValue
+        }
+    }
+}
+
+fileprivate func unicode(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard 1 == parameters.count else { return ErrorValue.invalidArgumentCount }
+    
+    let param0 = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .stringable, context: context)
+    if param0 is ErrorableValue {
+        return param0
+    }
+    guard let textParam = param0 as? StringableValue else { return ErrorValue.generic }
+    let text = textParam.string
+
+    if text.unicodeScalars.count == 0 {
+        return ErrorValue.invalidValue
+    } else {
+        let first = text.unicodeScalars[text.unicodeScalars.startIndex]
+        return DoubleValue(number: Double(first.value))
+    }
+}
+
+fileprivate func upper(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
+    guard parameters.count == 1 else { return ErrorValue.invalidArgumentCount }
+    
+    let param = parameters[0]
+        .evaluate(with: context)
+        .dereference(with: context)
+        .cast(to: .stringable, context: context)
+    if param is ErrorableValue {
+        return param
+    }
+    guard let textParam = param as? StringableValue else { return ErrorValue.generic }
+    let text = textParam.string
+    
+    let result = text.uppercased()
+    return StringValue(string: result)
 }
