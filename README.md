@@ -1,10 +1,54 @@
 # Formulitic
 
-Formula parser and evaluator
+Formulitic is a formula evaluating library written in Swift.
 
 ## Usage
 
-*TBD*
+### Basic
+
+The formula is a string which describes a calculation and is similar to the one in speradsheet apps.
+
+```swift
+let formulaString = "1 + 2 * 3"
+```
+
+You can parse and evaluate it by `Formulitic` object.
+
+```swift
+let formulitic = Formulitic()
+let formula = formulitic.parse(formulaString)
+let result = formula.evaluate()
+```
+
+The evaluated result has one of the following types: number, string, boolean or error.
+
+```swift
+switch result {
+case let numerableResult as NumerableValue:
+    print(numerableResult.number)    // prints "7.0" in this example
+case let stringableResult as StringableValue:
+    print(stringableResult.string)
+case let booleanableResult as BooleanableValue:
+    print(booleanableResult.bool)
+case let errorableResult as ErrorableValue:
+    print(errorableResult)
+default:
+    break
+}
+```
+
+### References
+
+
+
+### Functions
+
+
+
+
+
+
+
 
 ## Requirements
 
