@@ -6,7 +6,7 @@ Formulitic is a formula evaluating library written in Swift.
 
 ### Basic
 
-The formula is a string which describes a calculation and is similar to the one in speradsheet apps.
+The formula is a string which describes a calculation and is similar to that in speradsheet apps.
 
 ```swift
 let formulaString = "1 + 2 * 3"
@@ -38,6 +38,7 @@ default:
 ```
 
 ### References
+
 
 
 
