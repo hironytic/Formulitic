@@ -39,6 +39,39 @@ default:
 
 ### References
 
+A formula can contain references with curly brackets.
+
+```swift
+let formulaString = "2 * {pi} * {radius}"
+```
+
+To resolve these references a "reference producer", an object which conforms to `ReferenceProducer`, is needed.
+It provides a `ReferableValue` for each  reference name.
+
+For simple case, you can use `BasicReferenceProducer`.
+
+```swift
+let refProducer = BasicReferenceProducer()
+refProducer.dereferencer = { (name, _) -> Value in
+    switch name {
+    case "pi":
+        return DoubleValue(number: Double.pi)
+    case "radius":
+        return DoubleValue(number: 5)
+    default:
+        return ErrorValue.invalidReference
+    }
+}
+```
+
+Then create `Formulitic` object with this reference producer.
+
+```swift
+let formulitic = Formulitic(referenceProducer: refProducer)
+let formula = formulitic.parse(formulaString)
+let result = formula.evaluate()
+// the result is a NumerableValue whose number is 31.41592...
+```
 
 
 
