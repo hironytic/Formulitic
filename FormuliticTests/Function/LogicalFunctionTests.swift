@@ -46,7 +46,7 @@ class LogicalFunctionTests: XCTestCase {
             }
         }
         formulitic = Formulitic(referenceProducer: refProducer)
-        formulitic.installFunctions(Functions.logical)
+        formulitic.installFunctions(BuiltInFunction.logical)
     }
     
     func testAnd1() {

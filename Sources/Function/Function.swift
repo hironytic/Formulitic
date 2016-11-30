@@ -32,11 +32,11 @@ import Foundation
 public typealias Function = (_ parameters: [Expression], _ context: EvaluateContext) -> Value
 
 /// Constant definition about function names.
-public struct FuncName {
+public struct BuiltInFunctionName {
     private init() {}
 }
 
 /// Constant definition about functions.
-public struct Functions {
+public struct BuiltInFunction {
     private init() {}
 }

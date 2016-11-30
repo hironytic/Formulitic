@@ -25,7 +25,7 @@
 
 import Foundation
 
-public extension FuncName {
+public extension BuiltInFunctionName {
     /// Names of operator functions.
     ///
     /// These functions are internally used to evaluate operator values.
@@ -80,29 +80,29 @@ public extension FuncName {
     }
 }
 
-public extension Functions {
+public extension BuiltInFunction {
     /// Operator functions.
     ///
     /// These functions are internally used to evaluate operator values.
     public static let operator_: [String: Function] = [
-        FuncName.Operator.equalTo: equalTo,
-        FuncName.Operator.notEqualTo: notEqualTo,
-        FuncName.Operator.lessThan: lessThan,
-        FuncName.Operator.lessThanOrEqualTo: lessThanOrEqualTo,
-        FuncName.Operator.greaterThan: greaterThan,
-        FuncName.Operator.greaterThanOrEqualTo: greaterThanOrEqualTo,
+        BuiltInFunctionName.Operator.equalTo: equalTo,
+        BuiltInFunctionName.Operator.notEqualTo: notEqualTo,
+        BuiltInFunctionName.Operator.lessThan: lessThan,
+        BuiltInFunctionName.Operator.lessThanOrEqualTo: lessThanOrEqualTo,
+        BuiltInFunctionName.Operator.greaterThan: greaterThan,
+        BuiltInFunctionName.Operator.greaterThanOrEqualTo: greaterThanOrEqualTo,
         
-        FuncName.Operator.concatenate: concatenate,
+        BuiltInFunctionName.Operator.concatenate: concatenate,
 
-        FuncName.Operator.add: add,
-        FuncName.Operator.subtract: subtract,
-        FuncName.Operator.multiply: multiply,
-        FuncName.Operator.divide: divide,
+        BuiltInFunctionName.Operator.add: add,
+        BuiltInFunctionName.Operator.subtract: subtract,
+        BuiltInFunctionName.Operator.multiply: multiply,
+        BuiltInFunctionName.Operator.divide: divide,
         
-        FuncName.Operator.power: power,
+        BuiltInFunctionName.Operator.power: power,
         
-        FuncName.Operator.unaryPlus: unaryPlus,
-        FuncName.Operator.unaryNegate: unaryNegate,
+        BuiltInFunctionName.Operator.unaryPlus: unaryPlus,
+        BuiltInFunctionName.Operator.unaryNegate: unaryNegate,
     ]
 }
 

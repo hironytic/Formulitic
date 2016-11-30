@@ -46,7 +46,7 @@ class StringFunctionTests: XCTestCase {
             }
         }
         formulitic = Formulitic(referenceProducer: refProducer)
-        formulitic.installFunctions(Functions.string)
+        formulitic.installFunctions(BuiltInFunction.string)
     }
     
     func testFind1() {

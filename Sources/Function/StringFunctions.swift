@@ -25,7 +25,7 @@
 
 import Foundation
 
-public extension FuncName {
+public extension BuiltInFunctionName {
     /// Names of logical functions.
     public struct String {
         private init() {}
@@ -74,23 +74,23 @@ public extension FuncName {
     }
 }
 
-public extension Functions {
+public extension BuiltInFunction {
     /// String functions.
     public static let string: [String: Function] = [
-        FuncName.String.find: find,
-        FuncName.String.left: left,
-        FuncName.String.len: len,
-        FuncName.String.lower: lower,
-        FuncName.String.mid: mid,
-        FuncName.String.replace: replace,
-        FuncName.String.rept: rept,
-        FuncName.String.right: right,
-        FuncName.String.substitute: substitute,
-        FuncName.String.t: t,
-        FuncName.String.trim: trim,
-        FuncName.String.unichar: unichar,
-        FuncName.String.unicode: unicode,
-        FuncName.String.upper: upper,
+        BuiltInFunctionName.String.find: find,
+        BuiltInFunctionName.String.left: left,
+        BuiltInFunctionName.String.len: len,
+        BuiltInFunctionName.String.lower: lower,
+        BuiltInFunctionName.String.mid: mid,
+        BuiltInFunctionName.String.replace: replace,
+        BuiltInFunctionName.String.rept: rept,
+        BuiltInFunctionName.String.right: right,
+        BuiltInFunctionName.String.substitute: substitute,
+        BuiltInFunctionName.String.t: t,
+        BuiltInFunctionName.String.trim: trim,
+        BuiltInFunctionName.String.unichar: unichar,
+        BuiltInFunctionName.String.unicode: unicode,
+        BuiltInFunctionName.String.upper: upper,
     ]
 }
 

@@ -25,7 +25,7 @@
 
 import Foundation
 
-public extension FuncName {
+public extension BuiltInFunctionName {
     /// Names of logical functions.
     public struct Logical {
         private init() {}
@@ -65,20 +65,20 @@ public extension FuncName {
     }
 }
 
-public extension Functions {
+public extension BuiltInFunction {
     /// Logical functions.
     public static let logical: [String: Function] = [
-        FuncName.Logical.and: and,
-        FuncName.Logical.false_: false_,
-        FuncName.Logical.if_: if_,
-        FuncName.Logical.ifs: ifs,
-        FuncName.Logical.iferror: iferror,
-        FuncName.Logical.ifna: ifna,
-        FuncName.Logical.not: not,
-        FuncName.Logical.or: or,
-        FuncName.Logical.switch_: switch_,
-        FuncName.Logical.true_: true_,
-        FuncName.Logical.xor: xor,
+        BuiltInFunctionName.Logical.and: and,
+        BuiltInFunctionName.Logical.false_: false_,
+        BuiltInFunctionName.Logical.if_: if_,
+        BuiltInFunctionName.Logical.ifs: ifs,
+        BuiltInFunctionName.Logical.iferror: iferror,
+        BuiltInFunctionName.Logical.ifna: ifna,
+        BuiltInFunctionName.Logical.not: not,
+        BuiltInFunctionName.Logical.or: or,
+        BuiltInFunctionName.Logical.switch_: switch_,
+        BuiltInFunctionName.Logical.true_: true_,
+        BuiltInFunctionName.Logical.xor: xor,
     ]
 }
 
