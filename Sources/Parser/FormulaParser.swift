@@ -46,7 +46,7 @@ import Foundation
 //
 //      ValueExpression ::= <NUMBER> | <STRING>
 //
-//      ReferenceExpression ::= '{' <IDENTIFIER> '}'
+//      ReferenceExpression ::= '{' <REFNAME> '}'
 //
 //      FunctionExpression ::= <IDENTIFIER> '(' FunctionParameterList ')'
 //
@@ -59,6 +59,8 @@ import Foundation
 //      <STRING> ::= '"' ((~['"']) | ('"' '"'))* '"'
 //
 //      <IDENTIFIER> ::= (['A'-'Z','a'-'z','_']) (['A'-'Z','a'-'z','_','0'-'9'])*
+//
+//      <REFNAME> ::= (~['}'])+
 
 
 class FormulaParser {
@@ -72,6 +74,7 @@ class FormulaParser {
     private lazy var numberTokenRegularExpression = try! NSRegularExpression(pattern: "[0-9]+(\\.[0-9]+)?([eE][\\+\\-]?[0-9]+)?", options: [])
     private lazy var stringTokenRegularExpression = try! NSRegularExpression(pattern: "\"([^\"]|\"\")*\"", options: [])
     private lazy var identifierTokenRegularExpression = try! NSRegularExpression(pattern: "[A-Za-z_][A-Za-z_0-9]*", options: [])
+    private lazy var refnameTokenRegularExpression = try! NSRegularExpression(pattern: "[^\\}]+", options: [])
 
     public init(formulitic: Formulitic, formulaString: String) {
         self.formulitic = formulitic
@@ -388,7 +391,7 @@ class FormulaParser {
         skipSpaces()
         let ch = consumeCharacter()
         guard ch == "{" else { throw ParseError.syntax }
-        guard let name = consumeToken(by: identifierTokenRegularExpression) else { throw ParseError.syntax }
+        guard let name = consumeToken(by: refnameTokenRegularExpression) else { throw ParseError.syntax }
         
         skipSpaces()
         if consumeCharacter() != "}" {
