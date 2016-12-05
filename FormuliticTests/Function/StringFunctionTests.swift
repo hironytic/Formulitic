@@ -45,8 +45,9 @@ class StringFunctionTests: XCTestCase {
                 return ErrorValue.invalidReference
             }
         }
-        formulitic = Formulitic(referenceProducer: refProducer)
-        formulitic.installFunctions(BuiltInFunction.string)
+        let funcProvider = BasicFunctionProvider()
+        funcProvider.installFunctions(BuiltInFunction.string)
+        formulitic = Formulitic(referenceProducer: refProducer, functionProvider: funcProvider)
     }
     
     func testFind1() {

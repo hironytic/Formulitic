@@ -1,5 +1,5 @@
 //
-// ReferenceProducer.swift
+// BuiltInFunction.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,11 +25,12 @@
 
 import Foundation
 
-/// A protocol to which a reference producer conforms.
-public protocol ReferenceProducer {
-    /// Returns a reference value for specified name.
-    /// - Parameters:
-    ///     - name: A name of the reference.
-    /// - Returns: A reference value.
-    func reference(for name: String) -> ReferableValue
+/// Constant definition about function names.
+public struct BuiltInFunctionName {
+    private init() {}
+}
+
+/// Constant definition about functions.
+public struct BuiltInFunction {
+    private init() {}
 }

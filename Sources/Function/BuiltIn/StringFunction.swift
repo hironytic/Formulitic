@@ -1,5 +1,5 @@
 //
-// StringFunctions.swift
+// StringFunction.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>

@@ -45,8 +45,9 @@ class LogicalFunctionTests: XCTestCase {
                 return ErrorValue.invalidReference
             }
         }
-        formulitic = Formulitic(referenceProducer: refProducer)
-        formulitic.installFunctions(BuiltInFunction.logical)
+        let funcProvider = BasicFunctionProvider()
+        funcProvider.installFunctions(BuiltInFunction.logical)
+        formulitic = Formulitic(referenceProducer: refProducer, functionProvider: funcProvider)
     }
     
     func testAnd1() {

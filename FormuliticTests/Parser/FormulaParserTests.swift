@@ -101,8 +101,7 @@ class FormulaParserTests: XCTestCase {
     
     func testFunctionWithTwoParam() {
         let formulaString = "MAX(1,2)"
-        let formulitic = Formulitic()
-        formulitic.installFunctions([
+        let funcProvider = BasicFunctionProvider(functions: [
             "MAX": { (parameters, context) -> Value in
                 guard parameters.count == 2 else { return ErrorValue.invalidArgumentCount }
                 let value1OrNil = (parameters[0].evaluate(with: context).cast(to: .numerable, context: context) as? NumerableValue)?.number
@@ -111,6 +110,7 @@ class FormulaParserTests: XCTestCase {
                 return DoubleValue(number: max(value1, value2))
             }
         ])
+        let formulitic = Formulitic(functionProvider: funcProvider)
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         if let numberableResult = result as? NumerableValue {
@@ -122,13 +122,13 @@ class FormulaParserTests: XCTestCase {
     
     func testFunctionWithNoParam() {
         let formulaString = "TRUE()"
-        let formulitic = Formulitic()
-        formulitic.installFunctions([
+        let funcProvider = BasicFunctionProvider(functions: [
             "TRUE": { (parameters, context) -> Value in
                 guard parameters.count == 0 else { return ErrorValue.invalidArgumentCount }
                 return BoolValue(bool: true)
             }
-            ])
+        ])
+        let formulitic = Formulitic(functionProvider: funcProvider)
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         if let booleanableResult = result as? BooleanableValue {

@@ -30,13 +30,3 @@ import Foundation
 ///     - parameters: Parameter expressions of the function.
 ///     - context: An `EvaluateContext` object
 public typealias Function = (_ parameters: [Expression], _ context: EvaluateContext) -> Value
-
-/// Constant definition about function names.
-public struct BuiltInFunctionName {
-    private init() {}
-}
-
-/// Constant definition about functions.
-public struct BuiltInFunction {
-    private init() {}
-}

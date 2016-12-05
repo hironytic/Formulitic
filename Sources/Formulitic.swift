@@ -29,30 +29,18 @@ import Foundation
 public class Formulitic {
     /// A reference producer.
     public let referenceProducer: ReferenceProducer
-    private var functions: [String: Function]
+    
+    /// A function provider.
+    public let functionProvider: FunctionProvider
 
     /// Initializes the object.
     /// - Parameters:
     ///     - referenceProducer: A reference producer to manage references.
-    public init(referenceProducer: ReferenceProducer = NullReferenceProducer()) {
-        functions = [:]
+    public init(referenceProducer: ReferenceProducer = NullReferenceProducer(), functionProvider: FunctionProvider = BasicFunctionProvider()) {
         self.referenceProducer = referenceProducer
-        
-        installFunctions(BuiltInFunction.operator_)
+        self.functionProvider = functionProvider
     }
 
-    /// Installs custom functions.
-    ///
-    /// When you install functions that have the same function names of already installed functions,
-    /// it replaces them by newly installed ones.
-    /// - Parameters:
-    ///     - functions: A dictionary which has pairs of the function name and its function.
-    public func installFunctions(_ functions: [String: Function]) {
-        for (key, value) in functions {
-            self.functions[key] = value
-        }
-    }
-    
     /// Parses a formula string.
     /// - Parameters:
     ///     - formulaString A formula string.
@@ -63,7 +51,7 @@ public class Formulitic {
     }
     
     func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
-        guard let function = functions[name] else { return ErrorValue.unknownFunction }
+        guard let function = functionProvider.function(for: name) ?? BuiltInFunction.operator_[name] else { return ErrorValue.unknownFunction }
         return function(parameters, context)
     }
 }

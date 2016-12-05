@@ -1,5 +1,5 @@
 //
-// ReferenceProducer.swift
+// BasicFunctionProvider.swift
 // Formulitic
 //
 // Copyright (c) 2016 Hironori Ichimiya <hiron@hironytic.com>
@@ -25,11 +25,30 @@
 
 import Foundation
 
-/// A protocol to which a reference producer conforms.
-public protocol ReferenceProducer {
-    /// Returns a reference value for specified name.
+/// A function provider to which functions can be installed as dictionary.
+///
+/// This class treats function names as case-insensitive.
+public class BasicFunctionProvider: FunctionProvider {
+    private var functions: [String: Function]
+
+    public init(functions: [String: Function] = [:]) {
+        self.functions = [:]
+        installFunctions(functions)
+    }
+    
+    /// Installs custom functions.
+    ///
+    /// When you install functions that have the same function names of already installed functions,
+    /// it replaces them by newly installed ones.
     /// - Parameters:
-    ///     - name: A name of the reference.
-    /// - Returns: A reference value.
-    func reference(for name: String) -> ReferableValue
+    ///     - functions: A dictionary which has pairs of the function name and its function.
+    public func installFunctions(_ functions: [String: Function]) {
+        for (key, value) in functions {
+            self.functions[key.uppercased()] = value
+        }
+    }
+
+    public func function(for name: String) -> Function? {
+        return functions[name.uppercased()]
+    }
 }
