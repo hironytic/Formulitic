@@ -25,86 +25,82 @@
 
 import Foundation
 
-public extension BuiltInFunctionName {
-    /// Names of operator functions.
-    ///
-    /// These functions are internally used to evaluate operator values.
-    public struct Operator {
-        private init() {}
-        
-        /// `=` or `==` operator.
-        public static let equalTo = "=="
-        
-        /// `!=` or `<>` opeator.
-        public static let notEqualTo = "!="
-        
-        /// `<` operator.
-        public static let lessThan = "<"
-        
-        /// `<=` operator.
-        public static let lessThanOrEqualTo = "<="
-        
-        /// `>` operator.
-        public static let greaterThan = ">"
-        
-        /// `>=` operator.
-        public static let greaterThanOrEqualTo = ">="
-        
-        
-        /// `&` operator.
-        public static let concatenate = "&"
-        
+/// Names of operator functions.
+///
+/// These functions are internally used to evaluate operator values.
+public struct OperatorFunctionName {
+    private init() {}
+    
+    /// `=` or `==` operator.
+    public static let equalTo = "=="
+    
+    /// `!=` or `<>` opeator.
+    public static let notEqualTo = "!="
+    
+    /// `<` operator.
+    public static let lessThan = "<"
+    
+    /// `<=` operator.
+    public static let lessThanOrEqualTo = "<="
+    
+    /// `>` operator.
+    public static let greaterThan = ">"
+    
+    /// `>=` operator.
+    public static let greaterThanOrEqualTo = ">="
+    
+    
+    /// `&` operator.
+    public static let concatenate = "&"
+    
 
-        /// `+` (binary) operator.
-        public static let add = "+"
-        
-        /// `-` (binary) operator
-        public static let subtract = "-"
-        
-        /// `*` operator
-        public static let multiply = "*"
-        
-        /// `/` operator
-        public static let divide = "/"
-        
-        
-        /// `^` operator.
-        public static let power = "^"
+    /// `+` (binary) operator.
+    public static let add = "+"
+    
+    /// `-` (binary) operator
+    public static let subtract = "-"
+    
+    /// `*` operator
+    public static let multiply = "*"
+    
+    /// `/` operator
+    public static let divide = "/"
+    
+    
+    /// `^` operator.
+    public static let power = "^"
 
-        
-        /// `+` (unary) operator.
-        public static let unaryPlus = "+()"
-        
-        /// `-` (unary) operator.
-        public static let unaryNegate = "-()"
-    }
+    
+    /// `+` (unary) operator.
+    public static let unaryPlus = "+()"
+    
+    /// `-` (unary) operator.
+    public static let unaryNegate = "-()"
 }
 
-public extension BuiltInFunction {
-    /// Operator functions.
-    ///
-    /// These functions are internally used to evaluate operator values.
-    public static let operator_: [String: Function] = [
-        BuiltInFunctionName.Operator.equalTo: equalTo,
-        BuiltInFunctionName.Operator.notEqualTo: notEqualTo,
-        BuiltInFunctionName.Operator.lessThan: lessThan,
-        BuiltInFunctionName.Operator.lessThanOrEqualTo: lessThanOrEqualTo,
-        BuiltInFunctionName.Operator.greaterThan: greaterThan,
-        BuiltInFunctionName.Operator.greaterThanOrEqualTo: greaterThanOrEqualTo,
-        
-        BuiltInFunctionName.Operator.concatenate: concatenate,
+/// Operator functions.
+///
+/// These functions are internally used to evaluate operator values.
+public let operatorFunctions: [String: Function] = [
+    OperatorFunctionName.equalTo: equalTo,
+    OperatorFunctionName.notEqualTo: notEqualTo,
+    OperatorFunctionName.lessThan: lessThan,
+    OperatorFunctionName.lessThanOrEqualTo: lessThanOrEqualTo,
+    OperatorFunctionName.greaterThan: greaterThan,
+    OperatorFunctionName.greaterThanOrEqualTo: greaterThanOrEqualTo,
+    
+    OperatorFunctionName.concatenate: concatenate,
 
-        BuiltInFunctionName.Operator.add: add,
-        BuiltInFunctionName.Operator.subtract: subtract,
-        BuiltInFunctionName.Operator.multiply: multiply,
-        BuiltInFunctionName.Operator.divide: divide,
-        
-        BuiltInFunctionName.Operator.power: power,
-        
-        BuiltInFunctionName.Operator.unaryPlus: unaryPlus,
-        BuiltInFunctionName.Operator.unaryNegate: unaryNegate,
-    ]
-}
+    OperatorFunctionName.add: add,
+    OperatorFunctionName.subtract: subtract,
+    OperatorFunctionName.multiply: multiply,
+    OperatorFunctionName.divide: divide,
+    
+    OperatorFunctionName.power: power,
+    
+    OperatorFunctionName.unaryPlus: unaryPlus,
+    OperatorFunctionName.unaryNegate: unaryNegate,
+]
 
 internal typealias BinaryEvaluator = (_ operand1: Value, _ operand2: Value, _ context: EvaluateContext) -> Value
 fileprivate typealias UnaryEvaluator = (_ operand: Value, _ context: EvaluateContext) -> Value

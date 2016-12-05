@@ -154,19 +154,19 @@ class FormulaParser {
                 default:
                     currentPosition = pos2
                 }
-                funcName = BuiltInFunctionName.Operator.equalTo
+                funcName = OperatorFunctionName.equalTo
                 
             case "<"?:
                 let pos2 = currentPosition
                 let ch2 = consumeCharacter()
                 switch ch2 {
                 case ">"?:
-                    funcName = BuiltInFunctionName.Operator.notEqualTo
+                    funcName = OperatorFunctionName.notEqualTo
                 case "="?:
-                    funcName = BuiltInFunctionName.Operator.lessThanOrEqualTo
+                    funcName = OperatorFunctionName.lessThanOrEqualTo
                 default:
                     currentPosition = pos2
-                    funcName = BuiltInFunctionName.Operator.lessThan
+                    funcName = OperatorFunctionName.lessThan
                 }
             
             case ">"?:
@@ -174,17 +174,17 @@ class FormulaParser {
                 let ch2 = consumeCharacter()
                 switch ch2 {
                 case "="?:
-                    funcName = BuiltInFunctionName.Operator.greaterThanOrEqualTo
+                    funcName = OperatorFunctionName.greaterThanOrEqualTo
                 default:
                     currentPosition = pos2
-                    funcName = BuiltInFunctionName.Operator.greaterThan
+                    funcName = OperatorFunctionName.greaterThan
                 }
                 
             case "!"?:
                 let ch2 = consumeCharacter()
                 switch ch2 {
                 case "="?:
-                    funcName = BuiltInFunctionName.Operator.notEqualTo
+                    funcName = OperatorFunctionName.notEqualTo
                 default:
                     currentPosition = pos1
                     break loop
@@ -220,7 +220,7 @@ class FormulaParser {
             
             let exp1 = result
             let exp2 = try parseAdditiveExpression()
-            result = FunctionExpression(formulitic: formulitic, name: BuiltInFunctionName.Operator.concatenate, parameters: [exp1, exp2])
+            result = FunctionExpression(formulitic: formulitic, name: OperatorFunctionName.concatenate, parameters: [exp1, exp2])
         }
         
         return result
@@ -236,9 +236,9 @@ class FormulaParser {
             let ch = consumeCharacter()
             switch ch {
             case "+"?:
-                funcName = BuiltInFunctionName.Operator.add
+                funcName = OperatorFunctionName.add
             case "-"?:
-                funcName = BuiltInFunctionName.Operator.subtract
+                funcName = OperatorFunctionName.subtract
             default:
                 currentPosition = pos
                 break loop
@@ -262,9 +262,9 @@ class FormulaParser {
             let ch = consumeCharacter()
             switch ch {
             case "*"?:
-                funcName = BuiltInFunctionName.Operator.multiply
+                funcName = OperatorFunctionName.multiply
             case "/"?:
-                funcName = BuiltInFunctionName.Operator.divide
+                funcName = OperatorFunctionName.divide
             default:
                 currentPosition = pos
                 break loop
@@ -295,7 +295,7 @@ class FormulaParser {
             
             let exp1 = result
             let exp2 = try parsePrefixUnaryExpression()
-            result = FunctionExpression(formulitic: formulitic, name: BuiltInFunctionName.Operator.power, parameters: [exp1, exp2])
+            result = FunctionExpression(formulitic: formulitic, name: OperatorFunctionName.power, parameters: [exp1, exp2])
         }
         
         return result
@@ -309,9 +309,9 @@ class FormulaParser {
             let ch = consumeCharacter()
             switch ch {
             case "+"?:
-                funcNames.append(BuiltInFunctionName.Operator.unaryPlus)
+                funcNames.append(OperatorFunctionName.unaryPlus)
             case "-"?:
-                funcNames.append(BuiltInFunctionName.Operator.unaryNegate)
+                funcNames.append(OperatorFunctionName.unaryNegate)
             default:
                 currentPosition = pos
                 break loop

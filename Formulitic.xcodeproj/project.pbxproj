@@ -109,6 +109,7 @@
 				509DFDB51DF621B30041797F /* BasicFunctionProvider.swift */,
 				5034D4A61DCB09A600666762 /* Function.swift */,
 				509DFDB31DF6205E0041797F /* FunctionProvider.swift */,
+				5034D4A81DCB20F300666762 /* OperatorFunction.swift */,
 			);
 			path = Function;
 			sourceTree = "<group>";
@@ -212,7 +213,6 @@
 			children = (
 				509DFDB11DF61FDD0041797F /* BuiltInFunction.swift */,
 				504639471DD1FDA300F76D88 /* LogicalFunction.swift */,
-				5034D4A81DCB20F300666762 /* OperatorFunction.swift */,
 				50CDBEAB1DE14E1900A89D74 /* StringFunction.swift */,
 			);
 			path = BuiltIn;

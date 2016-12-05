@@ -51,7 +51,7 @@ public class Formulitic {
     }
     
     func evaluateFunction(name: String, parameters: [Expression], context: EvaluateContext) -> Value {
-        guard let function = functionProvider.function(for: name) ?? BuiltInFunction.operator_[name] else { return ErrorValue.unknownFunction }
+        guard let function = functionProvider.function(for: name) ?? operatorFunctions[name] else { return ErrorValue.unknownFunction }
         return function(parameters, context)
     }
 }
