@@ -45,10 +45,10 @@ A formula can contain references with curly brackets.
 let formulaString = "2 * {pi} * {radius}"
 ```
 
-To resolve these references a "reference producer", an object which conforms to `ReferenceProducer`, is needed.
-It provides a `ReferableValue` for each  reference name.
+To resolve these references, an object called "reference producer" is needed.
+It conforms to `ReferenceProducer` protocol and produce a `ReferableValue` for each  reference name.
 
-For simple case, you can use `BasicReferenceProducer`.
+For simple case, you can use `BasicReferenceProducer` class.
 
 ```swift
 let refProducer = BasicReferenceProducer()
@@ -73,15 +73,61 @@ let result = formula.evaluate()
 // the result is a NumerableValue whose number is 31.41592...
 ```
 
-
-
 ### Functions
 
+A formula can contain function calls.
 
+```swift
+let formulaString = "HELLO(\"world\")"
+```
 
+In evaluating a function, the actual implementation is provided by an object called "function provider", which conforms to `FunctionProvider` protocol.
 
+You can use `BasicFunctionProvider` class. 
 
+```swift
+let funcProvider = BasicFunctionProvider()
+funcProvider.installFunctions([
+    "HELLO": { (parameters, context) in
+        guard parameters.count == 1 else { return ErrorValue.invalidArgumentCount }
+        
+        let param = parameters[0]
+            .evaluate(with: context)
+            .dereference(with: context)
+            .cast(to: .stringable, context: context)
+        if param is ErrorableValue {
+            return param
+        }
+        guard let textParam = param as? StringableValue else { return ErrorValue.generic }
+        let text = textParam.string
 
+        return StringValue(string: "Hello, \(text)")
+    }
+])
+```
+
+Then create `Formulitic` object with this function provider.
+
+```swift
+let formulitic = Formulitic(functionProvider: funcProvider)
+let formula = formulitic.parse(formulaString)
+let result = formula.evaluate()
+// the result is a StringValue whose string is "Hello, world".
+```
+There are built-in functions which are not installed by default.
+Install them to `BasicFunctionProvider` as your needs.
+
+```swift
+let formulaString = "LEN(\"foobar\")"
+let funcProvider = BasicFunctionProvider()
+funcProvider.installFunctions(BuiltInFunction.string)
+let formulitic = Formulitic(functionProvider: funcProvider)
+let formula = formulitic.parse(formulaString)
+let result = formula.evaluate()
+// the result is a NumerableValue whose number is 6".
+```
+
+<!-- For more informations, please see ... -->
 
 
 ## Requirements
