@@ -45,7 +45,7 @@ A formula can contain references with curly brackets.
 let formulaString = "2 * {pi} * {radius}"
 ```
 
-To resolve these references, an object called "reference producer" is needed.
+To resolve these references, an object called "reference producer" is used.
 It conforms to `ReferenceProducer` protocol and produce a `ReferableValue` for each  reference name.
 
 For simple case, you can use `BasicReferenceProducer` class.
@@ -114,8 +114,9 @@ let formula = formulitic.parse(formulaString)
 let result = formula.evaluate()
 // the result is a StringValue whose string is "Hello, world".
 ```
-There are built-in functions which are not installed by default.
-Install them to `BasicFunctionProvider` as your needs.
+
+Additionally there are built-in functions, which are not installed by default.
+You can install them to `BasicFunctionProvider` as your needs.
 
 ```swift
 let formulaString = "LEN(\"foobar\")"
@@ -137,9 +138,6 @@ let result = formula.evaluate()
 
 ## Installation
 
-*TBD*
-
-<!--
 ### CocoaPods
 
 Formulitic is available through [CocoaPods](http://cocoapods.org).
@@ -158,7 +156,6 @@ To install it, simply add the following line to your Cartfile:
 ```
 github "hironytic/Formulitic"
 ```
--->
 
 ## Author
 
