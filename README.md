@@ -1,5 +1,11 @@
 # Formulitic
 
+[![CI Status](http://img.shields.io/travis/hironytic/Formulitic.svg?style=flat)](https://travis-ci.org/hironytic/Formulitic)
+[![Version](https://img.shields.io/cocoapods/v/Formulitic.svg?style=flat)](http://cocoapods.org/pods/Formulitic)
+[![License](https://img.shields.io/cocoapods/l/Formulitic.svg?style=flat)](http://cocoapods.org/pods/Formulitic)
+[![Platform](https://img.shields.io/cocoapods/p/Formulitic.svg?style=flat)](http://cocoapods.org/pods/Formulitic)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 Formulitic is a formula evaluating library written in Swift.
 
 ## Usage
