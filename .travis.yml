@@ -2,6 +2,11 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
+# disable building until xcode 9 image is out.
+branches:
+  except:
+  - swift-4
+
 language: objective-c
 osx_image: xcode8
 # cache: cocoapods
