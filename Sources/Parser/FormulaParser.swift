@@ -120,7 +120,7 @@ class FormulaParser {
         
         guard let from = fromIndex, let to = toIndex else { return nil }
         currentPosition = to
-        return formulaString[from ..< to]
+        return String(formulaString[from ..< to])
     }
     
     public func parseFormula() -> Formula {

@@ -345,7 +345,7 @@ fileprivate let divide = binaryOperator(dereferencing: true) { (operand1, operan
     return DoubleValue(number: result)
 }
 
-fileprivate let unaryPlus = unaryOperator(dereferencing: true) { $0.0 }
+fileprivate let unaryPlus = unaryOperator(dereferencing: true) { o, c in o }
 
 fileprivate func unaryNegate(_ parameters: [Expression], _ context: EvaluateContext) -> Value {
     if parameters.count != 1 {
