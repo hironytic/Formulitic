@@ -105,7 +105,7 @@ class FormulaParser {
         guard currentPosition != formulaString.endIndex else { return nil }
         
         skipSpaces()
-        let searchIndex = currentPosition.samePosition(in: formulaString.utf16)
+        guard let searchIndex = currentPosition.samePosition(in: formulaString.utf16) else { return nil }
         let searchLocation = formulaString.utf16.distance(from: formulaString.utf16.startIndex, to: searchIndex)
         let searchRange = NSRange(location: searchLocation, length: formulaString.utf16.count - searchLocation)
         let range = re.rangeOfFirstMatch(in: formulaString,
