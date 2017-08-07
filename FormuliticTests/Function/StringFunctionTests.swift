@@ -54,21 +54,21 @@ class StringFunctionTests: XCTestCase {
         let formulaString = "FIND(\"apple\", \"Pen Pineapple Apple Pen\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 9.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 9.0, accuracy: 0.001)
     }
 
     func testFind2() {
         let formulaString = "FIND(\"Apple\", \"Pen Pineapple Apple Pen\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 15.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 15.0, accuracy: 0.001)
     }
     
     func testFind3() {
         let formulaString = "FIND(\"Pen\", \"Pen Pineapple Apple Pen\", 10)"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 21.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 21.0, accuracy: 0.001)
     }
     
     func testFind4() {
@@ -115,19 +115,19 @@ class StringFunctionTests: XCTestCase {
         let formulaString = "LEN(\"Fire the lasor!\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 15.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 15.0, accuracy: 0.001)
     }
 
     func testLen2() {
         let formulaString1 = "LEN({eAcute1})"
         let formula1 = formulitic.parse(formulaString1)
         let result1 = formula1.evaluate()
-        XCTAssertEqualWithAccuracy((result1 as? NumerableValue)?.number ?? 0.0, 1.0, accuracy: 0.001)
+        XCTAssertEqual((result1 as? NumerableValue)?.number ?? 0.0, 1.0, accuracy: 0.001)
         
         let formulaString2 = "LEN({eAcute2})"
         let formula2 = formulitic.parse(formulaString2)
         let result2 = formula2.evaluate()
-        XCTAssertEqualWithAccuracy((result2 as? NumerableValue)?.number ?? 0.0, 2.0, accuracy: 0.001)
+        XCTAssertEqual((result2 as? NumerableValue)?.number ?? 0.0, 2.0, accuracy: 0.001)
     }
     
     func testLower() {
@@ -309,14 +309,14 @@ class StringFunctionTests: XCTestCase {
         let formulaString = "UNICODE(\"A\")"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 65.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 65.0, accuracy: 0.001)
     }
     
     func testUnicode2() {
         let formulaString = "UNICODE({smirk})"
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 128527.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 128527.0, accuracy: 0.001)
     }
 
     func testUnicode3() {
