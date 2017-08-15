@@ -128,15 +128,9 @@ fileprivate func find(_ parameters: [Expression], _ context: EvaluateContext) ->
     let start = Int(startParam.number) - 1
     
     guard 0 ..< withinText.unicodeScalars.count ~= start else { return ErrorValue.invalidValue }
-    guard let startPos = withinText.unicodeScalars
-        .index(withinText.unicodeScalars.startIndex, offsetBy: start)
-        .samePosition(in: withinText)
-        else {
-            return ErrorValue.invalidValue
-    }
+    let startPos = withinText.unicodeScalars.index(withinText.unicodeScalars.startIndex, offsetBy: start)
     if let foundRange = withinText.range(of: findText, range: startPos ..< withinText.endIndex) {
-        let foundPosInUnicodeScalar = foundRange.lowerBound.samePosition(in: withinText.unicodeScalars)!
-        let result = withinText.unicodeScalars.distance(from: withinText.unicodeScalars.startIndex, to: foundPosInUnicodeScalar) + 1
+        let result = withinText.unicodeScalars.distance(from: withinText.unicodeScalars.startIndex, to: foundRange.lowerBound) + 1
         return DoubleValue(number: Double(result))
     } else {
         return ErrorValue.invalidValue

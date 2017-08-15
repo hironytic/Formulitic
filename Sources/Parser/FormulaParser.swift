@@ -105,20 +105,16 @@ class FormulaParser {
         guard currentPosition != formulaString.endIndex else { return nil }
         
         skipSpaces()
-        guard let searchIndex = currentPosition.samePosition(in: formulaString.utf16) else { return nil }
-        let searchLocation = formulaString.utf16.distance(from: formulaString.utf16.startIndex, to: searchIndex)
+        let searchLocation = formulaString.utf16.distance(from: formulaString.utf16.startIndex, to: currentPosition)
         let searchRange = NSRange(location: searchLocation, length: formulaString.utf16.count - searchLocation)
         let range = re.rangeOfFirstMatch(in: formulaString,
                                          options: .anchored,
                                          range: searchRange)
         
         guard range.location != NSNotFound else { return nil }
-        let utf16FromIndex = formulaString.utf16.index(formulaString.utf16.startIndex, offsetBy: range.location)
-        let utf16ToIndex = formulaString.utf16.index(utf16FromIndex, offsetBy: range.length)
-        let fromIndex = utf16FromIndex.samePosition(in: formulaString)
-        let toIndex = utf16ToIndex.samePosition(in: formulaString)
+        let from = formulaString.utf16.index(formulaString.utf16.startIndex, offsetBy: range.location)
+        let to = formulaString.utf16.index(from, offsetBy: range.length)
         
-        guard let from = fromIndex, let to = toIndex else { return nil }
         currentPosition = to
         return String(formulaString[from ..< to])
     }
