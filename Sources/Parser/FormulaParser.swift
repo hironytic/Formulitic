@@ -371,11 +371,10 @@ class FormulaParser {
         case "\""?:
             currentPosition = pos
             guard let stringToken = consumeToken(by: stringTokenRegularExpression) else { throw ParseError.syntax }
-            let string = stringToken
-                // trim first and last quotes
-                .substring(with: stringToken.index(after: stringToken.startIndex) ..< stringToken.index(before: stringToken.endIndex))
-                // replace doubled quotes into one quote
-                .replacingOccurrences(of: "\"\"", with: "\"")
+            // trim first and last quotes
+            let content = stringToken[stringToken.index(after: stringToken.startIndex) ..< stringToken.index(before: stringToken.endIndex)]
+            // replace doubled quotes into one quote
+            let string = String(content.replacingOccurrences(of: "\"\"", with: "\""))
             return ValueExpression(formulitic: formulitic, value: StringValue(string: string))
             
         default:
