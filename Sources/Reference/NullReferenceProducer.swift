@@ -33,6 +33,9 @@ public class NullReferenceProducer: ReferenceProducer {
     public func reference(for name: String) -> ReferableValue {
         return NullReferenceValue.shared
     }
+    
+    public init() {
+    }
 }
 
 /// A reference value used with `NullReferenceProducer`.

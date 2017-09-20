@@ -192,7 +192,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 11.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 11.0, accuracy: 0.001)
     }
 
     func testAdd2() {
@@ -208,7 +208,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, -9.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, -9.0, accuracy: 0.001)
     }
     
     func testMultiply1() {
@@ -216,7 +216,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 6.0, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 6.0, accuracy: 0.001)
     }
     
     func testDivide1() {
@@ -224,7 +224,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 2.5, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 2.5, accuracy: 0.001)
     }
     
     func testPower1() {
@@ -232,7 +232,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 1024, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 1024, accuracy: 0.001)
     }
     
     func testUnaryPlus1() {
@@ -240,7 +240,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, 100, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, 100, accuracy: 0.001)
     }
     
     func testUnaryPlus2() {
@@ -256,7 +256,7 @@ class OperatorFunctionTests: XCTestCase {
         let formulitic = Formulitic()
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
-        XCTAssertEqualWithAccuracy((result as? NumerableValue)?.number ?? 0.0, -200, accuracy: 0.001)
+        XCTAssertEqual((result as? NumerableValue)?.number ?? 0.0, -200, accuracy: 0.001)
     }
 
     func testUnaryNegate2() {

@@ -33,7 +33,7 @@ class FormulaParserTests: XCTestCase {
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         if let numberableResult = result as? NumerableValue {
-            XCTAssertEqualWithAccuracy(numberableResult.number, 11.0, accuracy: 0.001)
+            XCTAssertEqual(numberableResult.number, 11.0, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
         }
@@ -45,7 +45,7 @@ class FormulaParserTests: XCTestCase {
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         if let numberableResult = result as? NumerableValue {
-            XCTAssertEqualWithAccuracy(numberableResult.number, 15.0, accuracy: 0.001)
+            XCTAssertEqual(numberableResult.number, 15.0, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
         }
@@ -81,7 +81,7 @@ class FormulaParserTests: XCTestCase {
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         if let numberableResult = result as? NumerableValue {
-            XCTAssertEqualWithAccuracy(numberableResult.number, -23.5, accuracy: 0.001)
+            XCTAssertEqual(numberableResult.number, -23.5, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
         }
@@ -114,7 +114,7 @@ class FormulaParserTests: XCTestCase {
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         if let numberableResult = result as? NumerableValue {
-            XCTAssertEqualWithAccuracy(numberableResult.number, 2.0, accuracy: 0.001)
+            XCTAssertEqual(numberableResult.number, 2.0, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
         }
@@ -155,7 +155,7 @@ class FormulaParserTests: XCTestCase {
         let formula = formulitic.parse(formulaString)
         let result = formula.evaluate()
         if let numberableResult = result as? NumerableValue {
-            XCTAssertEqualWithAccuracy(numberableResult.number, 50.0, accuracy: 0.001)
+            XCTAssertEqual(numberableResult.number, 50.0, accuracy: 0.001)
         } else {
             XCTFail("the result should be a number")
         }
